@@ -34,6 +34,30 @@ namespace TYPSA.SharedLib.Autocad.GetEntityCoordinates
             return ca.X.CompareTo(cb.X);
         }
 
+
+
+        public static int CompareEntitiesByPositionHorizontal(Entity a, Entity b, double xTolerance = 0.001)
+        {
+            Point3d ca = GetEntityCentroid(a);
+            Point3d cb = GetEntityCentroid(b);
+
+            // Primero comparamos X (izquierda a derecha)
+            double diffX = ca.X - cb.X;
+            if (Math.Abs(diffX) > xTolerance)
+            {
+                return diffX < 0 ? -1 : 1;
+            }
+
+            // Si están en la misma columna, ordenar por Y descendente (arriba primero)
+            double diffY = cb.Y - ca.Y;
+            if (Math.Abs(diffY) > xTolerance)
+            {
+                return diffY > 0 ? 1 : -1;
+            }
+
+            return 0;
+        }
+
         public static List<Entity> OrderByColumns(
             IEnumerable<Entity> entities,
             Func<Entity, Point3d> getCentroid,

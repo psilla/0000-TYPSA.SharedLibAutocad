@@ -3,16 +3,8 @@
   "WorkspaceRootPath": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-collectorbyobjecttype\\cls_00_exportlabelstoexcel_epplus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-collectorbyobjecttype\\cls_00_exportlabelstoexcel_epplus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-collectorbyobjecttype\\cls_00_mtextobjectsbylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-collectorbyobjecttype\\cls_00_mtextobjectsbylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-collectorbyobjecttype\\cls_00_dbobjectsbytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-collectorbyobjecttype\\cls_00_dbobjectsbytype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-deleteentities\\cls_00_deleteentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-deleteentities\\cls_00_deleteentity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -55,40 +47,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "cls_00_ExportLabelsToExcel_EPPlus.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-CollectorByObjectType\\cls_00_ExportLabelsToExcel_EPPlus.cs",
-              "RelativeDocumentMoniker": "00-CollectorByObjectType\\cls_00_ExportLabelsToExcel_EPPlus.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-CollectorByObjectType\\cls_00_ExportLabelsToExcel_EPPlus.cs",
-              "RelativeToolTip": "00-CollectorByObjectType\\cls_00_ExportLabelsToExcel_EPPlus.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T11:35:51.062Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "cls_00_DbObjectsByType.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-CollectorByObjectType\\cls_00_DbObjectsByType.cs",
-              "RelativeDocumentMoniker": "00-CollectorByObjectType\\cls_00_DbObjectsByType.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-CollectorByObjectType\\cls_00_DbObjectsByType.cs",
-              "RelativeToolTip": "00-CollectorByObjectType\\cls_00_DbObjectsByType.cs",
+              "Title": "cls_00_DeleteEntity.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DeleteEntities\\cls_00_DeleteEntity.cs",
+              "RelativeDocumentMoniker": "00-DeleteEntities\\cls_00_DeleteEntity.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DeleteEntities\\cls_00_DeleteEntity.cs",
+              "RelativeToolTip": "00-DeleteEntities\\cls_00_DeleteEntity.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T11:32:56.124Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "cls_00_MTextObjectsByLayer.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-CollectorByObjectType\\cls_00_MTextObjectsByLayer.cs",
-              "RelativeDocumentMoniker": "00-CollectorByObjectType\\cls_00_MTextObjectsByLayer.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-CollectorByObjectType\\cls_00_MTextObjectsByLayer.cs",
-              "RelativeToolTip": "00-CollectorByObjectType\\cls_00_MTextObjectsByLayer.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-06T11:27:14.235Z",
+              "WhenOpened": "2025-10-07T05:55:43.013Z",
               "EditorCaption": ""
             }
           ]

@@ -11,7 +11,31 @@ namespace TYPSA.SharedLib.Autocad.DrawEntities
 {
     public class cls_00_DrawEntities
     {
-        public static void DrawMTextOnPoint(
+        public static void DrawCircle(
+            Transaction tr,
+            BlockTableRecord btr,
+            Point3d center,
+            double radius = 3.0,
+            string layerName = "E-HOMERUN-FAILED",
+            short colorIndex = 1
+        )
+        {
+            // Creamos el circulo
+            using (var circle = new Circle(center, Vector3d.ZAxis, radius))
+            {
+                // Asignamos la capa
+                circle.Layer = layerName;
+
+                // Asignamos el color 
+                circle.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(
+                    Autodesk.AutoCAD.Colors.ColorMethod.ByAci, colorIndex);
+
+                // Agregar a la BlockTableRecord
+                cls_00_DocumentInfo.AddEntityToBlockTableRecord(circle, btr, tr);
+            }
+        }
+
+        public static ObjectId DrawMTextOnPoint(
             Point3d tagPoint,
             string tagValue,
             Transaction tr,
@@ -54,16 +78,31 @@ namespace TYPSA.SharedLib.Autocad.DrawEntities
 
             // Insertar el MText en el dibujo
             cls_00_DocumentInfo.AddEntityToBlockTableRecord(mText, btr, tr);
+
+            // return
+            return mText.ObjectId;
         }
 
         public static AttachmentPoint AskMTextJustificationFromUser(
             AttachmentPoint defaultJustification = AttachmentPoint.TopLeft
         )
         {
-            // Lista de opciones (nombre → enum)
-            Dictionary<string, AttachmentPoint> justifications = Enum
-                .GetValues(typeof(AttachmentPoint))
-                .Cast<AttachmentPoint>()
+            //// Lista de opciones (nombre → enum)
+            //Dictionary<string, AttachmentPoint> justifications = Enum
+            //    .GetValues(typeof(AttachmentPoint))
+            //    .Cast<AttachmentPoint>()
+            //    .ToDictionary(j => j.ToString(), j => j);
+
+            // Valores validos para MText
+            AttachmentPoint[] validValues = new[]
+            {
+                AttachmentPoint.TopLeft, AttachmentPoint.TopCenter, AttachmentPoint.TopRight,
+                AttachmentPoint.MiddleLeft, AttachmentPoint.MiddleCenter, AttachmentPoint.MiddleRight,
+                AttachmentPoint.BottomLeft, AttachmentPoint.BottomCenter, AttachmentPoint.BottomRight
+            };
+
+            // Diccionario de opciones
+            Dictionary<string, AttachmentPoint> justifications = validValues
                 .ToDictionary(j => j.ToString(), j => j);
 
             // Form

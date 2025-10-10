@@ -130,25 +130,31 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
 
         public static List<List<string>> SplitLabelValuesByCond(List<string> etiquetas)
         {
+            // Separadores válidos
+            char[] validSeparators = { '.', '-', '_', ',', ';' };
+
             List<List<string>> result = new List<List<string>>();
-            // Iteramos
+
+            // Iteramos sobre cada etiqueta
             foreach (string et in etiquetas)
             {
-                // Validamos
                 if (string.IsNullOrWhiteSpace(et)) continue;
 
-                // Separar por puntos
-                List<string> parts = et.Split(new char[] { '-' }, StringSplitOptions.RemoveEmptyEntries)
+                // Separar por cualquiera de los separadores válidos
+                List<string> parts = et.Split(validSeparators, StringSplitOptions.RemoveEmptyEntries)
                                        .Select(p => p.Trim())
                                        .ToList();
-                // Almacenamos
-                result.Add(parts);
+
+                // Solo agregamos si hay partes válidas
+                if (parts.Count > 0)
+                    result.Add(parts);
             }
-            // return
+
             return result;
         }
 
-        
+
+
 
 
 

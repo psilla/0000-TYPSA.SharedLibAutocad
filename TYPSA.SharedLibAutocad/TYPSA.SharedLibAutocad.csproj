@@ -146,8 +146,9 @@
     <Compile Include="00-DeleteEntities\cls_00_DeleteEntity.cs" />
     <Compile Include="00-Document\cls_00_DocumentInfo.cs" />
     <Compile Include="00-DrawEntities\cls_00_DrawEntities.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetMTextByLayer.cs" />
     <Compile Include="00-GetEntities\cls_00_GetElemByRegionByBrep.cs" />
-    <Compile Include="00-GetEntities\cls_00_GetBlockRefOrPolyByRegion.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetEntityByRegion.cs" />
     <Compile Include="00-GetEntities\cls_00_GetPolylinesByUser.cs" />
     <Compile Include="00-GetEntities\cls_00_GetPolylinesByLayer.cs" />
     <Compile Include="00-GetEntities\cls_00_GetBlockRefByLayer.cs" />

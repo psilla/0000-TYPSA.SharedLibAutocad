@@ -1,6 +1,6 @@
 ﻿using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
-using TYPSA.SharedLib.Autocad.UserForms;
+using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.EntitiesInsertionPoint
 {

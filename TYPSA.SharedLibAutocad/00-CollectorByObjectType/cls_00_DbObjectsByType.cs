@@ -2,7 +2,8 @@
 using Autodesk.AutoCAD.DatabaseServices;
 using System.Collections.Generic;
 using TYPSA.SharedLib.Autocad.GetDocument;
-using TYPSA.SharedLib.Autocad.UserForms;
+//using TYPSA.SharedLib.Autocad.UserForms;
+using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.DbObjectsByType
 {

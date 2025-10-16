@@ -35,13 +35,8 @@ C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\en-US\AcCustomiz
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\en-US\AppHomeInterop.resources.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\en-US\AcMr.resources.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\en-US\AcWindows.resources.dll
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Debug\TYPSA.SharedLib.Autocad.UserForms.PathEntry.resources
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Debug\TYPSA.SharedLib.Autocad.UserForms.ProgressBarControl.resources
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Debug\TYPSA.SharedLibAutocad.csproj.GenerateResource.cache
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\acdbmgdbrep.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\Newtonsoft.Json.xml
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Debug\TYPSA.SharedLib.Autocad.UserForms.ProjectCodeDialogTask.resources
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Debug\TYPSA.SharedLib.Autocad.UserForms.Clases.resources
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\EPPlus.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\EPPlus.Interfaces.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\EPPlus.System.Drawing.dll
@@ -87,3 +82,6 @@ C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\System.Text.Enco
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\System.Text.Json.xml
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\System.ValueTuple.xml
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\TYPSA.SharedLibForms.pdb
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\TYPSA.SharedLibForms.dll
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\TYPSA.SharedLibForms.dll.config

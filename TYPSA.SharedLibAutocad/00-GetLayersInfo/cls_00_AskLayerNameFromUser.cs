@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using TYPSA.SharedLib.Autocad.UserForms;
+using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {

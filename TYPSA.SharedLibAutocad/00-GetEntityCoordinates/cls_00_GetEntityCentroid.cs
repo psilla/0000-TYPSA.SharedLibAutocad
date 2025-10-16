@@ -35,7 +35,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntityCoordinates
         }
 
 
-
         public static int CompareEntitiesByPositionHorizontal(Entity a, Entity b, double xTolerance = 0.001)
         {
             Point3d ca = GetEntityCentroid(a);
@@ -57,7 +56,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntityCoordinates
 
             return 0;
         }
-
         public static List<Entity> OrderByColumns(
             IEnumerable<Entity> entities,
             Func<Entity, Point3d> getCentroid,

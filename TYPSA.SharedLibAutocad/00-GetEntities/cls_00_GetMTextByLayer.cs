@@ -28,6 +28,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             {
                 new TypedValue((int)DxfCode.LayerName, layerName),
                 new TypedValue((int)DxfCode.Start, "MTEXT")
+                //new TypedValue((int)DxfCode.Operator, "<OR"),
+                //new TypedValue((int)DxfCode.Start, "TEXT"),
+                //new TypedValue((int)DxfCode.Start, "MTEXT"),
+                //new TypedValue((int)DxfCode.Operator, "OR>")
             };
 
             // Definimos la selección

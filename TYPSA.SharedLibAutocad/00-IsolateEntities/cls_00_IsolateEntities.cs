@@ -42,6 +42,45 @@ namespace TYPSA.SharedLib.Autocad.IsolateEntities
             CommandIsolate(ed, objetosInvalidos);
         }
 
+        public static void IsolateObjectsOutsideRegions(
+            Editor ed,
+            HashSet<ObjectId> todosLosObjetos,
+            HashSet<ObjectId> objetosEnRegiones,
+            List<Autodesk.AutoCAD.DatabaseServices.Region> validRegion // Agregado para aislar regiones
+        )
+        {
+            // Obtener objetos fuera de regiones
+            List<ObjectId> objetosFueraDeRegiones = todosLosObjetos.Where(id => !objetosEnRegiones.Contains(id)).ToList();
+
+            // Lista de ObjectId de regiones a aislar
+            List<ObjectId> regionesAislar = new List<ObjectId>();
+
+            // Obtener los ObjectId de las regiones contenidas en validRegion
+            foreach (var region in validRegion)
+            {
+                if (region != null)
+                {
+                    regionesAislar.Add(region.ObjectId);
+                }
+            }
+
+            // Si hay objetos fuera de las regiones o regiones a aislar
+            if (objetosFueraDeRegiones.Count > 0 || regionesAislar.Count > 0)
+            {
+                int totalAislar = objetosFueraDeRegiones.Count + regionesAislar.Count;
+
+                MessageBox.Show(
+                    $"{totalAislar} objects (including {objetosFueraDeRegiones.Count} blocks and {regionesAislar.Count} regions) will be isolated in AutoCAD.",
+                    "Isolated Objects and Regions"
+                );
+
+                // Combinar listas de objetos a aislar
+                List<ObjectId> objetosAislar = objetosFueraDeRegiones.Concat(regionesAislar).ToList();
+
+                // Comando Aislar
+                CommandIsolate(ed, objetosAislar);
+            }
+        }
 
 
 

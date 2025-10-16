@@ -146,17 +146,38 @@
     <Compile Include="00-DeleteEntities\cls_00_DeleteEntity.cs" />
     <Compile Include="00-Document\cls_00_DocumentInfo.cs" />
     <Compile Include="00-DrawEntities\cls_00_DrawEntities.cs" />
+    <Compile Include="00-GetAttributesFromEntity\cls_07_GetDynAttributesFromBlockRef.cs" />
+    <Compile Include="00-GetAttributesFromEntity\cls_07_GetAttributesFromEntity.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetPolylinesOrBlockRefByLayer.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetBlockRefByNameStartsWithByLayer.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetBlockRefOrPolyByRegion.cs" />
+    <Compile Include="00-GetEntities\cls_00_SelectBlockRefByNameFromXref.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetBlockRefByNameStartsWith.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetBlockRefByNameFromXref.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetBlockRefByName.cs" />
+    <Compile Include="00-GetEntities\cls_00_FilterBlockRefByNameFromPsr.cs" />
     <Compile Include="00-GetEntities\cls_00_GetMTextByLayer.cs" />
     <Compile Include="00-GetEntities\cls_00_GetElemByRegionByBrep.cs" />
     <Compile Include="00-GetEntities\cls_00_GetEntityByRegion.cs" />
     <Compile Include="00-GetEntities\cls_00_GetPolylinesByUser.cs" />
     <Compile Include="00-GetEntities\cls_00_GetPolylinesByLayer.cs" />
     <Compile Include="00-GetEntities\cls_00_GetBlockRefByLayer.cs" />
+    <Compile Include="00-GetEntityCoordinates\cls_00_GetPolylineHeight.cs" />
+    <Compile Include="00-GetEntityCoordinates\cls_00_GetCoordY.cs" />
+    <Compile Include="00-GetEntityCoordinates\cls_00_GetCoordX.cs" />
     <Compile Include="00-GetEntityCoordinates\cls_00_GetEntityCentroid.cs" />
     <Compile Include="00-GetEntityInsertionPoint\cls_07_GetEntityInsertionPoint.cs" />
+    <Compile Include="00-GetLayersInfo\cls_00_AskLayerNameDependOnDoc.cs" />
+    <Compile Include="00-GetLayersInfo\cls_00_GetLayerNamesDependOnDoc.cs" />
+    <Compile Include="00-GetLayersInfo\cls_00_GetLayerNamesFromActiveDocFilt.cs" />
+    <Compile Include="00-GetLayersInfo\cls_00_GetLayerNamesFromDatabase.cs" />
+    <Compile Include="00-GetLayersInfo\cls_00_GetLayerNamesFromXref.cs" />
+    <Compile Include="00-GetLayersInfo\cls_00_GetVisibPrintUnlockLayerNamesFromXref.cs" />
     <Compile Include="00-GetLayersInfo\cls_00_AskLayerNameFromUser.cs" />
     <Compile Include="00-GetLayersInfo\cls_00_GetLayerNamesFromActiveDoc.cs" />
     <Compile Include="00-GetLayersInfo\cls_00_CreateLayerIfNotExists.cs" />
+    <Compile Include="00-GetLoadedXref\cls_00_GetBtrFromXref.cs" />
+    <Compile Include="00-GetLoadedXref\cls_00_GetDictLoadedXref.cs" />
     <Compile Include="00-IsolateEntities\cls_00_IsolateEntities.cs" />
     <Compile Include="00-MetricsSender\cls_00_MetricsSender.cs" />
     <Compile Include="00-ProcessPoly\cls_00_ProcessOffsetPoly.cs" />
@@ -172,47 +193,8 @@
     <Compile Include="00-ProjectUnits\cls_00_ProjectUnits.cs" />
     <Compile Include="00-SelectEntities\cls_00_PromptSelectionWithFilter.cs" />
     <Compile Include="00-SelectEntities\cls_00_GetAllSelectionByFilter.cs" />
-    <Compile Include="00-ShowInfoBox\cls_00_ShowInfoBox.cs" />
-    <Compile Include="00-UserForms\Clases.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\AutoCloseForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\CheckListBoxForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\DropDownFormwithFormText.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\ProjectCodeDialogTask.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\ProjectCodeDialogTask.Designer.cs">
-      <DependentUpon>ProjectCodeDialogTask.cs</DependentUpon>
-    </Compile>
-    <Compile Include="00-UserForms\ProgressBarControl.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\ProgressBarControl.Designer.cs">
-      <DependentUpon>ProgressBarControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="00-UserForms\PathEntry.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\PathEntry.Designer.cs">
-      <DependentUpon>PathEntry.cs</DependentUpon>
-    </Compile>
-    <Compile Include="00-UserForms\TextBoxForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\DropDownFormInputList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\DropDownForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="00-UserForms\InstanciarFormularios.cs" />
+    <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRight.cs" />
+    <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRightTol.cs" />
     <Compile Include="01-Main\cls_00_ProcessResult.cs" />
     <Compile Include="02-Buttons\cls_00_GetUserData.cs" />
     <Compile Include="Program.cs" />
@@ -223,18 +205,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="00-UserForms\Clases.resx">
-      <DependentUpon>Clases.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="00-UserForms\PathEntry.resx">
-      <DependentUpon>PathEntry.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="00-UserForms\ProgressBarControl.resx">
-      <DependentUpon>ProgressBarControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="00-UserForms\ProjectCodeDialogTask.resx">
-      <DependentUpon>ProjectCodeDialogTask.cs</DependentUpon>
-    </EmbeddedResource>
+    <ProjectReference Include="..\..\0000-TYPSA.SharedLibForms\TYPSA.SharedLibForms\TYPSA.SharedLibForms.csproj">
+      <Project>{8f836313-b339-4db6-8a55-af61386871b4}</Project>
+      <Name>TYPSA.SharedLibForms</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

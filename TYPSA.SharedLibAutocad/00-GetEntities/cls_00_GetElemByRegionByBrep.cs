@@ -3,7 +3,7 @@ using Autodesk.AutoCAD.BoundaryRepresentation;
 using AcBr = Autodesk.AutoCAD.BoundaryRepresentation;
 using Autodesk.AutoCAD.Geometry;
 using System.Collections.Generic;
-using TYPSA.SharedLib.Autocad.UserForms;
+using TYPSA.SharedLib.UserForms;
 using System;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities

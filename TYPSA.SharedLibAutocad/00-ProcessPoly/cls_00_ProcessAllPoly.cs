@@ -3,7 +3,7 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using System.Text;
 using System;
-using TYPSA.SharedLib.Autocad.ShowInfoBox;
+using TYPSA.SharedLib.UserForms;
 using static TYPSA.SharedLib.Autocad.ProcessPoly.cls_00_ProcessPolyResult;
 
 namespace TYPSA.SharedLib.Autocad.ProcessPoly
@@ -63,7 +63,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
             // Mostrar info
             if (nullPolyCount > 0)
             {
-                cls_00_ShowInfoBox.ShowStringBuilder(
+                ShowStringBuilder.ShowInfo(
                     $"⚠ {entityTag} Issues Found:",
                     infoPoly.ToString()
                 );

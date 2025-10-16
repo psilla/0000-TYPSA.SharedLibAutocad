@@ -2,8 +2,8 @@
 using Autodesk.AutoCAD.DatabaseServices;
 using System.Text;
 using System;
-using TYPSA.SharedLib.Autocad.ShowInfoBox;
 using static TYPSA.SharedLib.Autocad.ProcessPoly.cls_00_ProcessOffsetPolyResult;
+using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.ProcessPoly
 {
@@ -60,7 +60,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
             // Mostrar info
             if (nullOffsetPolyCount > 0)
             {
-                cls_00_ShowInfoBox.ShowStringBuilder(
+                ShowStringBuilder.ShowInfo(
                     $"⚠ Offset {entityTag} Issues Found:",
                     infoOffsetPoly.ToString()
                 );

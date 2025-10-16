@@ -2,7 +2,7 @@
 using Autodesk.AutoCAD.DatabaseServices;
 using System.Text;
 using System;
-using TYPSA.SharedLib.Autocad.ShowInfoBox;
+using TYPSA.SharedLib.UserForms;
 using static TYPSA.SharedLib.Autocad.ProcessRegion.cls_00_ProcessRegionResult;
 
 namespace TYPSA.SharedLib.Autocad.ProcessRegion
@@ -61,7 +61,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessRegion
             // Mostrar info
             if (nullRegionCount > 0)
             {
-                cls_00_ShowInfoBox.ShowStringBuilder(
+                ShowStringBuilder.ShowInfo(
                     $"⚠ {entityTag} Region Issues Found:",
                     infoOffsetPolyToRegion.ToString()
                 );

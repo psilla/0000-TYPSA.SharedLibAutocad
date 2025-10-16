@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
-using TYPSA.SharedLib.Autocad.UserForms;
+using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.Buttons
 {

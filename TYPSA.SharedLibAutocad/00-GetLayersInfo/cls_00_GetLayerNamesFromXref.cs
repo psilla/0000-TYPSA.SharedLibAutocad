@@ -9,7 +9,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {
     public class cls_00_GetLayerNamesFromXref
     {
-        public static List<string> GetLayerNamesFromXrefInDocument(
+        public static List<string> GetLayerNamesFromXref(
             BlockTable bt, Transaction tr, string xrefFilePath
         )
         {
@@ -39,7 +39,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 
             // Obtenemos todas las capas visibles, desbloqueadas y que se imprimen del Xref
             List<string> cleanLayers =
-                cls_00_GetVisibPrintUnlockLayerNamesFromXref.GetVisibleAndPlottableLayerNamesFromXref(lt, tr);
+                cls_00_GetLayerNamesFromXrefFilt.GetLayerNamesFromXrefFilt(lt, tr);
 
             // return
             return cleanLayers.

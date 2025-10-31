@@ -10,17 +10,11 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
             double toleranciaCierre
         )
         {
-            // Verificar si la polilínea es nula
-            if (poly == null)
+            // Validamos
+            if (poly == null) return null;
 
-                // Finalizamos
-                return null;
-
-            // Si la polilínea ya está cerrada, la devolvemos sin cambios
-            if (poly.Closed)
-
-                // return
-                return poly;
+            // return
+            if (poly.Closed) return poly;
 
             // Obtener puntos inicial y final
             Point3d startPoint = poly.GetPoint3dAt(0);
@@ -36,11 +30,11 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
                 poly.UpgradeOpen();
                 poly.Closed = true;
 
-                // Devolvemos la polilínea cerrada
+                // return
                 return poly;
             }
 
-            // Si la distancia es mayor a la tolerancia, devolvemos null
+            // Por defecto
             return null;
         }
 

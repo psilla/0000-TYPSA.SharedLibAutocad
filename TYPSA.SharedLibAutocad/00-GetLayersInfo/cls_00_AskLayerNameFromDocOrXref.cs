@@ -3,9 +3,9 @@ using Autodesk.AutoCAD.DatabaseServices;
 
 namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {
-    public class cls_00_AskLayerNameDependOnDoc
+    public class cls_00_AskLayerNameFromDocOrXref
     {
-        public static string AskLayerNameDependingOnDocument(
+        public static string AskLayerNameFromDocOrXref(
             BlockTable bt,
             Transaction tr,
             bool boolXrefOrDoc,
@@ -15,7 +15,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
         )
         {
             // Obtener lista de capas segun el documento
-            List<string> layers = cls_00_GetLayerNamesDependOnDoc.GetLayerNamesFromDocOrXref(
+            List<string> layers = cls_00_GetLayerNamesFromDocOrXref.GetLayerNamesFromDocOrXref(
                 bt, tr, boolXrefOrDoc, xrefFilePath
             );
             // Validamos

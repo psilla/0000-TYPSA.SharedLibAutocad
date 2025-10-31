@@ -4,9 +4,9 @@ using Autodesk.AutoCAD.DatabaseServices;
 
 namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {
-    public class cls_00_GetVisibPrintUnlockLayerNamesFromXref
+    public class cls_00_GetLayerNamesFromXrefFilt
     {
-        public static List<string> GetVisibleAndPlottableLayerNamesFromXref(
+        public static List<string> GetLayerNamesFromXrefFilt(
             LayerTable layerTable, Transaction tr
 )
         {

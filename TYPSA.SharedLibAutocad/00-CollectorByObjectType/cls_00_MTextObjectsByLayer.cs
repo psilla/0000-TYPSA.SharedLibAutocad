@@ -5,7 +5,6 @@ using System.Linq;
 using System;
 using TYPSA.SharedLib.Autocad.DbObjectsByType;
 using TYPSA.SharedLib.Autocad.GetDocument;
-//using TYPSA.SharedLib.Autocad.UserForms;
 using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
@@ -153,6 +152,25 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
 
             return result;
         }
+
+        public static List<string> SplitLabelValueByCond(string etiqueta)
+        {
+            // Separadores válidos
+            char[] validSeparators = { '.', '-', '_', ',', ';' };
+
+            // Validar la etiqueta
+            if (string.IsNullOrWhiteSpace(etiqueta)) 
+                return new List<string>();
+
+            // Separar por cualquiera de los separadores válidos
+            List<string> parts = etiqueta
+                .Split(validSeparators, StringSplitOptions.RemoveEmptyEntries)
+                .Select(p => p.Trim())
+                .ToList();
+            // return
+            return parts;
+        }
+
 
 
 

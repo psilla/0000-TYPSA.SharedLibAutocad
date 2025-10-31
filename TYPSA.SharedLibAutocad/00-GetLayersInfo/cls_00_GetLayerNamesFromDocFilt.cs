@@ -7,9 +7,9 @@ using TYPSA.SharedLib.Autocad.GetDocument;
 
 namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {
-    public class cls_00_GetLayerNamesFromActiveDoc
+    public class cls_00_GetLayerNamesFromDocFilt
     {
-        public static List<string> GetLayerNamesFromActiveDocument()
+        public static List<string> GetLayerNamesFromDocFilt()
         {
             List<string> layerNames = new List<string>();
 
@@ -29,8 +29,12 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                     // Obtenemos la capa
                     LayerTableRecord layer = (LayerTableRecord)tr.GetObject(layerId, OpenMode.ForRead);
 
-                    // Agregamos
-                    layerNames.Add(layer.Name);
+                    // Filtramos las capas apagadas, bloqueadas o que no se imprimen
+                    if (!layer.IsOff && !layer.IsLocked && layer.IsPlottable)
+                    {
+                        // Agregamos
+                        layerNames.Add(layer.Name);
+                    }
                 }
 
                 // Cerramos transaccion
@@ -40,7 +44,6 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
             // Ordenar alfabeticamente
             return layerNames.OrderBy(name => name, StringComparer.OrdinalIgnoreCase).ToList();
         }
-
 
 
 

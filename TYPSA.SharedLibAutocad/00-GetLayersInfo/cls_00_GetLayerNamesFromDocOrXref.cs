@@ -3,7 +3,7 @@ using Autodesk.AutoCAD.DatabaseServices;
 
 namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {
-    public class cls_00_GetLayerNamesDependOnDoc
+    public class cls_00_GetLayerNamesFromDocOrXref
     {
         public static List<string> GetLayerNamesFromDocOrXref(
             BlockTable bt,
@@ -19,13 +19,13 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
             if (!boolXrefOrDoc)
             {
                 // Obtenemos todas las capas filtradas
-                layers = cls_00_GetLayerNamesFromActiveDocFilt.GetVisiblePrintableUnlockedLayerNames();
+                layers = cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt();
             }
             // Xref
             else
             {
                 // Obtenemos todas las capas filtradas
-                layers = cls_00_GetLayerNamesFromXref.GetLayerNamesFromXrefInDocument(bt, tr, xrefFilePath);
+                layers = cls_00_GetLayerNamesFromXref.GetLayerNamesFromXref(bt, tr, xrefFilePath);
             }
             // return
             return (layers != null && layers.Count > 0) ? layers : null;

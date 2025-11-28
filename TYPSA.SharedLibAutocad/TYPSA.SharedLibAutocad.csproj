@@ -140,15 +140,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="00-CollectorByObjectType\cls_00_ObjectsByTypeByLayerFilt.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_ObjectsByTypeByLayer.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_GetAllDbObjectTypes.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_MTextObjectsByLayer.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_DbObjectsByType.cs" />
     <Compile Include="00-DeleteEntities\cls_00_DeleteEntity.cs" />
     <Compile Include="00-Document\cls_00_DocumentInfo.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawCircle.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawPoint.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawLine.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawPoly.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawMleader.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawMtext.cs" />
+    <Compile Include="00-DrawEntities\cls_00_DrawDBtext.cs" />
     <Compile Include="00-DrawEntities\cls_00_DrawEntities.cs" />
     <Compile Include="00-GetAttributesFromEntity\cls_07_GetDynAttributesFromBlockRef.cs" />
     <Compile Include="00-GetAttributesFromEntity\cls_07_GetAttributesFromEntity.cs" />
+    <Compile Include="00-GetEntities\cls_00_GetLinesByLayer.cs" />
     <Compile Include="00-GetEntities\cls_00_GetPolyAndLinesByLayerFilterAsEnu.cs" />
     <Compile Include="00-GetEntities\cls_00_GetPolyAndLinesByLayerFilter.cs" />
     <Compile Include="00-GetEntities\cls_00_GetBlockRefByLayerFromXref.cs" />
@@ -173,7 +182,8 @@
     <Compile Include="00-GetEntityCoordinates\cls_00_GetCoordX.cs" />
     <Compile Include="00-GetEntityCoordinates\cls_00_GetEntityCentroid.cs" />
     <Compile Include="00-GetEntityElevation\cls_00_GetEntityElev.cs" />
-    <Compile Include="00-GetEntityInsertionPoint\cls_07_GetEntityInsertionPoint.cs" />
+    <Compile Include="00-GetEntityInsertionPoint\cls_00_GetEntityInsertionPoint.cs" />
+    <Compile Include="00-GetIntersection\cls_00_GetFirstInterFromEnt.cs" />
     <Compile Include="00-GetLayersInfo\cls_00_GetSelLayersByDefaultFromDoc.cs" />
     <Compile Include="00-GetLayersInfo\cls_00_AskLayerNameFromDocOrXref.cs" />
     <Compile Include="00-GetLayersInfo\cls_00_GetLayerNamesFromDocOrXref.cs" />
@@ -192,6 +202,7 @@
     <Compile Include="00-GraphAndNodeClass\cls_00_NodeClass.cs" />
     <Compile Include="00-IsolateEntities\cls_00_IsolateEntities.cs" />
     <Compile Include="00-MetricsSender\cls_00_MetricsSender.cs" />
+    <Compile Include="00-ProcessPolyAndRegion\cls_00_ProcessPolyAndRegion.cs" />
     <Compile Include="00-ProcessPoly\cls_00_CloneAndExpPoly.cs" />
     <Compile Include="00-ProcessPoly\cls_00_ProcessOffsetPoly.cs" />
     <Compile Include="00-ProcessPoly\cls_00_ProcessAllOffsetPoly.cs" />
@@ -200,6 +211,8 @@
     <Compile Include="00-ProcessPoly\cls_00_ProcessPoly.cs" />
     <Compile Include="00-ProcessPoly\cls_00_ProcessAllPoly.cs" />
     <Compile Include="00-ProcessPoly\cls_00_ProcessPolyResult.cs" />
+    <Compile Include="00-ProcessRegion\cls_00_GetOutRegionFromBlockRef.cs" />
+    <Compile Include="00-ProcessRegion\cls_00_ConvertPolyToRegion.cs" />
     <Compile Include="00-ProcessRegion\cls_00_ProcessRegion.cs" />
     <Compile Include="00-ProcessRegion\cls_00_ProcessAllRegion.cs" />
     <Compile Include="00-ProcessRegion\cls_00_ProcessRegionResult.cs" />

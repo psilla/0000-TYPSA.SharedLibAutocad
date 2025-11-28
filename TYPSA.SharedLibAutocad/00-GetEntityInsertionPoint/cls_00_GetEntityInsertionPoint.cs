@@ -4,7 +4,7 @@ using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.EntitiesInsertionPoint
 {
-    public class cls_07_GetEntityInsertionPoint
+    public class cls_00_GetEntityInsertionPoint
     {
         public static Point3d GetEntityInsertionPoint(Entity ent)
         {

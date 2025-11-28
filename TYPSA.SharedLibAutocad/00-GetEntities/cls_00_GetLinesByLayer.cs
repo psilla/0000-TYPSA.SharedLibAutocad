@@ -7,9 +7,9 @@ using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
-    public class cls_00_GetPolylinesByLayer
+    public class cls_00_GetLinesByLayer
     {
-        public static PromptSelectionResult GetPolylinesByLayer(
+        public static PromptSelectionResult GetLinesByLayer(
             Editor ed,
             List<string> docLayers,
             string entityTag,
@@ -27,7 +27,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
                     ed,
                     new TypedValue((int)DxfCode.LayerName, layerName),
-                    new TypedValue((int)DxfCode.Start, "LWPOLYLINE")
+                    new TypedValue((int)DxfCode.Start, "LINE")
                 );
 
             // Validamos
@@ -44,37 +44,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // return
             return psr;
         }
-
-        public static PromptSelectionResult GetPolylinesByLayer(
-            Editor ed,
-            string entityTag,
-            string layerName
-        )
-        {
-            // Definimos la selección
-            PromptSelectionResult psr =
-                cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
-                    ed,
-                    new TypedValue((int)DxfCode.LayerName, layerName),
-                    new TypedValue((int)DxfCode.Start, "LWPOLYLINE")
-                );
-
-            // Validamos
-            if (psr == null || psr.Status != PromptStatus.OK)
-            {
-                // Mensaje
-                MessageBox.Show(
-                    $"No {entityTag} found.", "Warning"
-                );
-                // Finalizamos
-                return null;
-            }
-
-            // return
-            return psr;
-        }
-
-
 
     }
 }

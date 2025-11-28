@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-processpoly\\cls_00_cloneandexppoly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-processpoly\\cls_00_cloneandexppoly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawentities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawentities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,21 +14,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 7,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "cls_00_CloneAndExpPoly.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-ProcessPoly\\cls_00_CloneAndExpPoly.cs",
-              "RelativeDocumentMoniker": "00-ProcessPoly\\cls_00_CloneAndExpPoly.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-ProcessPoly\\cls_00_CloneAndExpPoly.cs",
-              "RelativeToolTip": "00-ProcessPoly\\cls_00_CloneAndExpPoly.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABsAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-17T10:36:19.669Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -56,6 +43,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "cls_00_DrawEntities.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawEntities.cs",
+              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawEntities.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawEntities.cs",
+              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawEntities.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-11-17T13:35:47.748Z",
+              "EditorCaption": ""
             }
           ]
         },

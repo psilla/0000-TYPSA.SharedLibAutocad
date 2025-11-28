@@ -47,7 +47,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                             if (bloque == null) continue;
 
                             // Obtener el punto de inserción del bloque
-                            Point3d basePoint = cls_07_GetEntityInsertionPoint.
+                            Point3d basePoint = cls_00_GetEntityInsertionPoint.
                                 GetEntityInsertionPoint(bloque);
 
                             if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(basePoint, region))

@@ -8,13 +8,10 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
     public class cls_00_CreateLayerIfNotExists
     {
         public static void CreateLayerIfNotExists(
-            string layerName
+            string layerName,
+            Database db
         )
         {
-            // Obtenemos info
-            Document doc = cls_00_DocumentInfo.GetActiveDocument();
-            Database db = cls_00_DocumentInfo.GetDatabaseFromDocument(doc);
-
             // Abrimos transaccion
             using (Transaction tr = db.TransactionManager.StartTransaction())
             {

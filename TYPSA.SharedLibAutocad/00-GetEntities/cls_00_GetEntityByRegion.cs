@@ -45,7 +45,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                             // Validamos
                             if (bloque == null) continue;
                             // Obtener el basePoint del BlockReference
-                            Point3d basePoint = cls_07_GetEntityInsertionPoint.
+                            Point3d basePoint = cls_00_GetEntityInsertionPoint.
                                 GetEntityInsertionPoint(bloque);
                             //Point3d basePoint = cls_00_GetElemByRegionByBrep.
                             //    GetBlockReferenceCentroid(bloque);
@@ -75,7 +75,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         else if (obj is MText mText)
                         {
                             // Obtener el basePoint del texto
-                            Point3d basePoint = cls_07_GetEntityInsertionPoint.
+                            Point3d basePoint = cls_00_GetEntityInsertionPoint.
                                 GetEntityInsertionPoint(mText);
                             // Validamos
                             if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(basePoint, region))

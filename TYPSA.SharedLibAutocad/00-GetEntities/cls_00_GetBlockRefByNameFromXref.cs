@@ -62,6 +62,8 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             return result;
         }
 
+        
+
 
 
 

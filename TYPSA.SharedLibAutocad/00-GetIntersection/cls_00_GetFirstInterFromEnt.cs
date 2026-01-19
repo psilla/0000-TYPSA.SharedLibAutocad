@@ -9,12 +9,12 @@ namespace TYPSA.SharedLib.Autocad.GetIntersection
     {
         public static (Point3d? ClosestPoint, Entity IntersectedEntity) GetFirstInterFromEnt(
             Point3d origin,
-            Point3d bottom,
+            Point3d goal,
             List<Line> clonedEntities
         )
         {
             // Creamos la vertical
-            Line vertical = new Line(origin, bottom);
+            Line vertical = new Line(origin, goal);
 
             // Definimos el pto de intersección como nulo
             Point3d? closestIntersection = null;

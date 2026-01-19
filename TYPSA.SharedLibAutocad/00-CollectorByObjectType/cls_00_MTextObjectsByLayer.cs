@@ -128,7 +128,9 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
             return values;
         }
 
-        public static List<List<string>> SplitLabelValuesByCond(List<string> etiquetas)
+        public static List<List<string>> SplitLabelValuesByCond(
+            List<string> etiquetas
+        )
         {
             // Separadores válidos
             char[] validSeparators = { '.', '-', '_', ',', ';' };
@@ -153,7 +155,9 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
             return result;
         }
 
-        public static List<string> SplitLabelValueByCond(string etiqueta)
+        public static List<string> SplitLabelValueByCond(
+            string etiqueta
+        )
         {
             // Separadores válidos
             char[] validSeparators = { '.', '-', '_', ',', ';' };

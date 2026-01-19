@@ -69,6 +69,12 @@ namespace TYPSA.SharedLib.Autocad.ProjectUnits
             return SetProjectUnits();
         }
 
+        public static string GetProjectUnits()
+        {
+            // return
+            return cls_00_DocumentInfo.GetDrawingUnitsName();
+        }
+
 
     }
 }

@@ -6,9 +6,9 @@ using TYPSA.SharedLib.Autocad.EntitiesInsertionPoint;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
-    public class cls_00_GetEntityByRegion
+    public class cls_00_GetEntityDictByRegion
     {
-        public static Dictionary<string, List<DBObject>> GetEntityByRegionByPoint(
+        public static Dictionary<string, List<DBObject>> GetEntityDictByRegionByPoint(
             Transaction tr,
             Region region,
             HashSet<ObjectId> elemIds
@@ -44,13 +44,30 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         {
                             // Validamos
                             if (bloque == null) continue;
-                            // Obtener el basePoint del BlockReference
-                            Point3d basePoint = cls_00_GetEntityInsertionPoint.
+
+                            bool belongToRegion = false;
+                            // Intento 1: Pto base
+                            Point3d point = cls_00_GetEntityInsertionPoint.
                                 GetEntityInsertionPoint(bloque);
-                            //Point3d basePoint = cls_00_GetElemByRegionByBrep.
-                            //    GetBlockReferenceCentroid(bloque);
                             // Validamos
-                            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(basePoint, region))
+                            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
+                            {
+                                // Almacenamos
+                                belongToRegion = true;
+                            }
+                            // Intento 2: Centroide
+                            else
+                            {
+                                point = cls_00_GetElemByRegionByBrep.GetBlockReferenceCentroid(bloque);
+                                // Validamos
+                                if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
+                                {
+                                    // Almacenamos
+                                    belongToRegion = true;
+                                }
+                            }
+                            // Validamos
+                            if (belongToRegion)
                             {
                                 // Almacenamos
                                 objetosPorRegion[handleRegion].Add(bloque);
@@ -62,10 +79,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                             // Validamos
                             if (poly == null) continue;
                             // Obtener el centroide de la Polyline
-                            Point3d centroid = cls_00_GetElemByRegionByBrep.
+                            Point3d point = cls_00_GetElemByRegionByBrep.
                                 GetPolylineCentroid(poly);
                             // Validamos
-                            if (cls_00_GetElemByRegionByBrep.PolyCentroidByRegionByBrep(centroid, region))
+                            if (cls_00_GetElemByRegionByBrep.PolyCentroidByRegionByBrep(point, region))
                             {
                                 // Almacenamos
                                 objetosPorRegion[handleRegion].Add(poly);
@@ -74,11 +91,43 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         // En caso de ser MText
                         else if (obj is MText mText)
                         {
-                            // Obtener el basePoint del texto
-                            Point3d basePoint = cls_00_GetEntityInsertionPoint.
+                            bool belongToRegion = false;
+                            // Intento 1: Pto base
+                            Point3d point = cls_00_GetEntityInsertionPoint.
                                 GetEntityInsertionPoint(mText);
                             // Validamos
-                            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(basePoint, region))
+                            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
+                            {
+                                // Almacenamos
+                                belongToRegion = true;
+                            }
+                            // Intento 2: GeometricExtents
+                            else
+                            {
+                                // try
+                                try
+                                {
+                                    Extents3d ext = mText.GeometricExtents;
+                                    // Obtenemos pto
+                                    point = new Point3d(
+                                        (ext.MinPoint.X + ext.MaxPoint.X) * 0.5,
+                                        (ext.MinPoint.Y + ext.MaxPoint.Y) * 0.5,
+                                        (ext.MinPoint.Z + ext.MaxPoint.Z) * 0.5
+                                    );
+                                    // Validamos
+                                    if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
+                                    {
+                                        // Almacenamos
+                                        belongToRegion = true;
+                                    }
+                                }
+                                catch
+                                {
+                                    // Algunos MText pueden no tener extents válidos
+                                }
+                            }
+                            // Validamos
+                            if (belongToRegion)
                             {
                                 // Almacenamos
                                 objetosPorRegion[handleRegion].Add(mText);
@@ -115,7 +164,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             }
         }
 
-        public static Dictionary<string, List<DBObject>> GetEntityByRegionByPoints(
+        public static Dictionary<string, List<DBObject>> GetEntityDictByRegionByPoints(
             Transaction tr,
             Region region,
             HashSet<ObjectId> elemIds

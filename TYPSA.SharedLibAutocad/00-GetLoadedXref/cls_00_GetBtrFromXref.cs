@@ -8,9 +8,9 @@ namespace TYPSA.SharedLib.Autocad.GetLoadedXref
     public class cls_00_GetBtrFromXref
     {
         public static BlockTableRecord GetBtrFromXref(
-        BlockTable bt,
-        Transaction tr
-    )
+            BlockTable bt,
+            Transaction tr
+        )
         {
             // Obtenemos el diccionario de Xref
             Dictionary<string, BlockTableRecord> DictXrefs =

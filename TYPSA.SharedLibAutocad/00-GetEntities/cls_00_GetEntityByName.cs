@@ -2,34 +2,29 @@
 using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
-using TYPSA.SharedLib.Autocad.GetLayersInfo;
 using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
-    public class cls_00_GetPolylinesByLayer
+    public class cls_00_GetEntityByName
     {
-        public static PromptSelectionResult GetPolylinesByLayer(
+        public static PromptSelectionResult GetEntityByName(
             Editor ed,
-            List<string> docLayers,
             string entityTag,
-            string layerNameByDefault = null
+            string entityType,
+            string blockName
         )
         {
-            // Pedimos la capa al usuario
-            string layerName =
-                cls_00_AskLayerNameFromUser.AskLayerNameFromUser(docLayers, entityTag, layerNameByDefault);
-            // Validamos
-            if (layerName == null) return null;
+            // Definir el filtro por nombre de bloque y tipo de entidad
+            var filtros = new TypedValue[]
+            {
+                new TypedValue((int)DxfCode.Start, entityType),
+                new TypedValue((int)DxfCode.BlockName, blockName)
+            };
 
-            // Definimos la selección
+            // Seleccionamos
             PromptSelectionResult psr =
-                cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
-                    ed,
-                    new TypedValue((int)DxfCode.LayerName, layerName),
-                    new TypedValue((int)DxfCode.Start, "LWPOLYLINE")
-                );
-
+                cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(ed, filtros);
             // Validamos
             if (psr == null || psr.Status != PromptStatus.OK)
             {
@@ -45,20 +40,34 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             return psr;
         }
 
-        public static PromptSelectionResult GetPolylinesByLayer(
+        public static PromptSelectionResult GetEntityByNames(
             Editor ed,
             string entityTag,
-            string layerName
+            string entityType,
+            IEnumerable<string> blockNames
         )
         {
-            // Definimos la selección
+            // Definir el filtro por nombre de bloque y tipo de entidad
+            var filterList = new List<TypedValue>
+            {
+                new TypedValue((int)DxfCode.Start, entityType)
+            };
+
+            filterList.Add(new TypedValue((int)DxfCode.Operator, "<OR"));
+            // Admitir varios nombres de BlockRef
+            foreach (string name in blockNames)
+            {
+                filterList.Add(new TypedValue((int)DxfCode.BlockName, name));
+            }
+
+            filterList.Add(new TypedValue((int)DxfCode.Operator, "OR>"));
+
+            // Seleccionamos
             PromptSelectionResult psr =
                 cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
                     ed,
-                    new TypedValue((int)DxfCode.LayerName, layerName),
-                    new TypedValue((int)DxfCode.Start, "LWPOLYLINE")
+                    filterList.ToArray()
                 );
-
             // Validamos
             if (psr == null || psr.Status != PromptStatus.OK)
             {
@@ -73,8 +82,5 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // return
             return psr;
         }
-
-
-
     }
 }

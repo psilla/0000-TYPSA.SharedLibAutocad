@@ -5,19 +5,20 @@ using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
-    public class cls_00_GetBlockRefByName
+    public class cls_00_GetEntityByNameStartsWith
     {
-        public static PromptSelectionResult GetBlockRefByName(
+        public static PromptSelectionResult GetEntityByNameStartsWith(
             Editor ed,
             string entityTag,
-            string blockName
+            string entityType,
+            string startsWith
         )
         {
             // Definir el filtro por nombre de bloque y tipo de entidad
             var filtros = new TypedValue[]
             {
-                new TypedValue((int)DxfCode.Start, "INSERT"),
-                new TypedValue((int)DxfCode.BlockName, blockName)
+                new TypedValue((int)DxfCode.Start, entityType),
+                new TypedValue((int)DxfCode.BlockName, startsWith)
             };
 
             // Realizar la selección
@@ -38,7 +39,5 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // return
             return psr;
         }
-
-
     }
 }

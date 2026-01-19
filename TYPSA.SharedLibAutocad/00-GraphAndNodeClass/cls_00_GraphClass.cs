@@ -15,7 +15,9 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             public Dictionary<cls_00_NodeClass.NodePoint, List<Tuple<cls_00_NodeClass.NodePoint, Entity>>> AdjacencyList { get; } =
                 new Dictionary<cls_00_NodeClass.NodePoint, List<Tuple<cls_00_NodeClass.NodePoint, Entity>>>();
 
-            public Entity GetEntityOfNode(cls_00_NodeClass.NodePoint node)
+            public Entity GetEntityOfNode(
+                cls_00_NodeClass.NodePoint node
+            )
             {
                 if (!AdjacencyList.ContainsKey(node))
                     return null;
@@ -28,7 +30,11 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 return null;
             }
 
-            public void AddEdge(Point3d a, Point3d b, Entity ent)
+            public void AddEdge(
+                Point3d a, 
+                Point3d b, 
+                Entity ent
+            )
             {
                 cls_00_NodeClass.NodePoint na = FindOrAddNode(a);
                 cls_00_NodeClass.NodePoint nb = FindOrAddNode(b);
@@ -47,7 +53,9 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                     AdjacencyList[nb].Add(Tuple.Create(na, ent));
             }
 
-            public cls_00_NodeClass.NodePoint FindOrAddNode(Point3d pt)
+            public cls_00_NodeClass.NodePoint FindOrAddNode(
+                Point3d pt
+            )
             {
                 foreach (var key in AdjacencyList.Keys)
                 {
@@ -60,7 +68,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 return newNode;
             }
 
-            public cls_00_NodeClass.NodePoint FindClosestNode(Point3d pt, double tolerance = 0.5)
+            public cls_00_NodeClass.NodePoint FindClosestNode(
+                Point3d pt, 
+                double tolerance = 0.5
+            )
             {
                 double minDist = double.MaxValue;
                 cls_00_NodeClass.NodePoint closest = null;
@@ -78,7 +89,9 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 return closest;
             }
 
-            public List<cls_00_NodeClass.NodePoint> GetAllPointsFromEntity(Entity ent)
+            public List<cls_00_NodeClass.NodePoint> GetAllPointsFromEntity(
+                Entity ent
+            )
             {
                 return AdjacencyList
                     .SelectMany(kvp => kvp.Value
@@ -88,7 +101,9 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                     .ToList();
             }
 
-            public List<cls_00_NodeClass.NodePoint> OrderedPointsOnEntity(Entity entity)
+            public List<cls_00_NodeClass.NodePoint> OrderedPointsOnEntity(
+                Entity entity
+            )
             {
                 // Obtener todos los puntos del grafo que pertenecen a esta entidad
                 var pointsOnEntity = AdjacencyList
@@ -130,7 +145,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 return ordered;
             }
 
-            public Entity FindEntityConnectingPoints(Point3d p1, Point3d p2)
+            public Entity FindEntityConnectingPoints(
+                Point3d p1, 
+                Point3d p2
+            )
             {
                 foreach (var kvp in AdjacencyList)
                 {
@@ -146,7 +164,12 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 return null;
             }
 
-            public bool FindShortestPathInEntity(cls_00_NodeClass.NodePoint start, cls_00_NodeClass.NodePoint goal, Entity entity, out List<cls_00_NodeClass.NodePoint> path)
+            public bool FindShortestPathInEntity(
+                cls_00_NodeClass.NodePoint start, 
+                cls_00_NodeClass.NodePoint goal, 
+                Entity entity, 
+                out List<cls_00_NodeClass.NodePoint> path
+            )
             {
                 path = new List<cls_00_NodeClass.NodePoint>();
 
@@ -231,7 +254,9 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             }
 
 
-            public List<Line> GetLinesFromEntity(Entity entity)
+            public List<Line> GetLinesFromEntity(
+                Entity entity
+            )
             {
                 return AdjacencyList
                     .SelectMany(kvp => kvp.Value

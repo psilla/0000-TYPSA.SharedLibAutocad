@@ -14,26 +14,66 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
             string layerNameByDefault = null
         )
         {
-            // Mostramos formulario para elegir la capa
-            string layerName = InstanciarFormularios.DropDownFormListOut(
-                $"Select the layer that contains the {objeto}:",
-                layers.OrderBy(l => l, StringComparer.OrdinalIgnoreCase).ToList(),
-                "Selection form to choose a project layer",
-                layerNameByDefault
-            );
+            // Ordenamos las capas
+            List<string> orderedLayers = layers
+                .OrderBy(l => l, StringComparer.OrdinalIgnoreCase)
+                .ToList();
 
-            // Validar cancelación
-            if (string.IsNullOrEmpty(layerName))
+            // Mostramos formulario con CheckList
+            string selectedLayer = InstanciarFormularios.CheckListBoxFormUniqueSelectionSearchOut(
+                $"Select the layer that contains the {objeto}:",
+                orderedLayers, layerNameByDefault
+            );
+            // Validamos
+            if (string.IsNullOrEmpty(selectedLayer))
             {
                 // Mensaje
-                MessageBox.Show("⚠ No layer was selected. Operation cancelled.", "Warning");
+                MessageBox.Show(
+                    "⚠ No layer was selected. Operation cancelled.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
                 // Finalizamos
                 return null;
             }
-
             // return
-            return layerName;
+            return selectedLayer;
         }
+
+        public static List<string> AskLayerNamesFromUser(
+            List<string> layers,
+            string objeto,
+            List<string> layerNamesByDefault = null
+        )
+        {
+            // Ordenamos las capas
+            List<string> orderedLayers = layers
+                .OrderBy(l => l, StringComparer.OrdinalIgnoreCase)
+                .ToList();
+
+            // Mostramos formulario con CheckListBox
+            List<string> selectedLayers = InstanciarFormularios.CheckListBoxFormSearchOut(
+                $"Select the layers that contain the {objeto}:",
+                orderedLayers, layerNamesByDefault
+            );
+            // Validamos
+            if (selectedLayers == null || selectedLayers.Count == 0)
+            {
+                // Mensaje
+                MessageBox.Show(
+                    "⚠ No layer was selected. Operation cancelled.",
+                    "Warning",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning
+                );
+                // Finalizamos
+                return null;
+            }
+            // return
+            return selectedLayers;
+        }
+
 
 
 

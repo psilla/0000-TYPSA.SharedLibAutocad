@@ -85,3 +85,5 @@ C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\System.ValueTupl
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\TYPSA.SharedLibForms.pdb
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\TYPSA.SharedLibForms.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\TYPSA.SharedLibForms.dll.config
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\00-UserForms\SelectFilesDialog.resx
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Debug\00-UserForms\SelectFilesDialog.cs

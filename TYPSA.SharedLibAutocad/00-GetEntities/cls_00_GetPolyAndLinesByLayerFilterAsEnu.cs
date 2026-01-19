@@ -14,19 +14,24 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             HashSet<string> layersFilter,
             out int lineCount,
             out int polylineCount,
+            out int arcCount,
             out HashSet<string> capasUsadas
         )
         {
-            // Inicializar contadores y capas
+            // Contadores
             lineCount = 0;
             polylineCount = 0;
+            arcCount = 0;
+
+            // Capas usadas
             capasUsadas = new HashSet<string>();
 
             // Obtener lineas y poly para los HomeRuns
             DBObjectCollection allLinesAndPoly =
                 cls_00_GetPolyAndLinesByLayerFilter.GetPolyAndLinesByLayerFilter(
                     db, tr, btr, layersFilter,
-                    out lineCount, out polylineCount, out capasUsadas
+                    out lineCount, out polylineCount, out arcCount, 
+                    out capasUsadas
                 );
             // Validamos
             if (allLinesAndPoly.Count == 0)
@@ -36,7 +41,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                     : "None";
                 // Mensaje
                 MessageBox.Show(
-                    "⚠️ No lines or polylines found in the drawing.\n\n" +
+                    "⚠️ No lines, polylines or arcs found in the drawing.\n\n" +
                     $"Used layers: {capasTexto}\n\n" +
                     "Null return.",
                     "Warning"
@@ -46,20 +51,20 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             }
 
             // Creamos un enumerable de entidades a partir de la lista anterior
-            IEnumerable<Entity> entitiesFromLinesAndPoly = allLinesAndPoly.Cast<Entity>();
+            IEnumerable<Entity> result = allLinesAndPoly.Cast<Entity>();
             // Validamos
-            if (!entitiesFromLinesAndPoly.Any())
+            if (!result.Any())
             {
                 // Mensaje
                 MessageBox.Show(
-                    "⚠️ No entities created from the previous lines/polylines. Null return.",
+                    "⚠️ No entities created from the previous lines/polylines/arcs. Null return.",
                     "Empty Region"
                 );
                 // Finalizamos
                 return null;
             }
             // return
-            return entitiesFromLinesAndPoly;
+            return result;
         }
 
 

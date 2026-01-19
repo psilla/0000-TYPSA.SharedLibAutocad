@@ -1,17 +1,40 @@
-﻿using System;
+﻿using Autodesk.AutoCAD.DatabaseServices;
+using System;
 using System.Collections.Generic;
-using Autodesk.AutoCAD.DatabaseServices;
+using System.Linq;
 using System.Windows.Forms;
 
-namespace TYPSA.SharedLibAutocad._00_GetEntities
+namespace TYPSA.SharedLib.Autocad.GetEntities
 {
     public class cls_00_GetBlockRefByLayerFromXref
     {
+        public static bool GetBlockRefIdsByLayerFromXref(
+            BlockTableRecord xrefBTR,
+            Transaction tr,
+            string layerName,
+            out HashSet<ObjectId> skidIds
+        )
+        {
+            skidIds = null;
+            // Obtenemos por tipo de objeto y capa de BlockRef
+            List<BlockReference> psrEntXref = GetBlockRefByLayerFromXref(
+                new List<BlockTableRecord> { xrefBTR }, tr, layerName
+            );
+            // Validamos
+            if (psrEntXref == null || psrEntXref.Count == 0) return false;
+
+            // Obtenemos los ids
+            skidIds = new HashSet<ObjectId>(psrEntXref.Select(br => br.ObjectId));
+
+            // return
+            return true;
+        }
+
         public static List<BlockReference> GetBlockRefByLayerFromXref(
             List<BlockTableRecord> selectedXref,
             Transaction tr,
             string layerName,
-            bool acceptWithoutPrefix = true // si true, compara también contra la parte tras el '|'
+            bool acceptWithoutPrefix = true // compara contra la parte tras el '|'
         )
         {
             // Definimos lista vacía
@@ -58,7 +81,7 @@ namespace TYPSA.SharedLibAutocad._00_GetEntities
             {
                 // Mensaje
                 MessageBox.Show(
-                    $"No BlockReference elements with Property Sets applied were found inside the " +
+                    $"No BlockReference elements were found inside the " +
                     $"selected Xrefs on layer \"{layerName}\".",
                     "No Matches Found"
                 );

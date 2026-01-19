@@ -1,18 +1,19 @@
-﻿using System.Collections.Generic;
-using System.Windows.Forms;
-using Autodesk.AutoCAD.DatabaseServices;
+﻿using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using System.Collections.Generic;
+using System.Windows.Forms;
 using TYPSA.SharedLib.Autocad.GetLayersInfo;
 using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
-    public class cls_00_GetMTextByLayer
+    public class cls_00_GetEntityByLayer
     {
-        public static PromptSelectionResult GetMTextByLayer(
-            Editor ed,
+        public static PromptSelectionResult GetEntityByLayer(
             List<string> docLayers,
+            Editor ed,
             string entityTag,
+            string entityType,
             string layerNameByDefault = null
         )
         {
@@ -20,26 +21,20 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             string layerName = cls_00_AskLayerNameFromUser.AskLayerNameFromUser(
                 docLayers, entityTag, layerNameByDefault
             );
-
-            // En caso de null, finalizamos
+            // Validamos
             if (layerName == null) return null;
 
-            // Definir el filtro 
+            // Definir el filtro por nombre de bloque y tipo de entidad
             var filtros = new TypedValue[]
             {
                 new TypedValue((int)DxfCode.LayerName, layerName),
-                new TypedValue((int)DxfCode.Start, "MTEXT")
-                //new TypedValue((int)DxfCode.Operator, "<OR"),
-                //new TypedValue((int)DxfCode.Start, "TEXT"),
-                //new TypedValue((int)DxfCode.Start, "MTEXT"),
-                //new TypedValue((int)DxfCode.Operator, "OR>")
+                new TypedValue((int)DxfCode.Start, entityType),
             };
 
-            // Definimos la selección
+            // Realizar la selección
             PromptSelectionResult psr =
                 cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(ed, filtros);
-
-            // Verificación
+            // Validamos
             if (psr == null || psr.Status != PromptStatus.OK)
             {
                 // Mensaje
@@ -49,15 +44,15 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 // Finalizamos
                 return null;
             }
-
             // return
             return psr;
         }
 
-        public static PromptSelectionResult GetMTextByLayers(
-            Editor ed,
+        public static PromptSelectionResult GetEntityByLayers(
             List<string> docLayers,
+            Editor ed,
             string entityTag,
+            string entityType,
             List<string> defaultLayers = null
         )
         {
@@ -83,7 +78,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             filterValues.Add(new TypedValue((int)DxfCode.Operator, "OR>"));
 
             // Tipo de entidad
-            filterValues.Add(new TypedValue((int)DxfCode.Start, "MTEXT"));
+            filterValues.Add(new TypedValue((int)DxfCode.Start, entityType));
 
             // Realizar la selección
             PromptSelectionResult psr =
@@ -103,8 +98,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // return
             return psr;
         }
-
-
 
     }
 }

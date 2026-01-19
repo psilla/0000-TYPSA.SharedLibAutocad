@@ -85,3 +85,5 @@ C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Release\TYPSA.SharedLi
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Release\TYPSA.Sh.EB536689.Up2Date
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Release\TYPSA.SharedLibAutocad.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Release\TYPSA.SharedLibAutocad.pdb
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\00-UserForms\SelectFilesDialog.resx
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\00-UserForms\SelectFilesDialog.cs

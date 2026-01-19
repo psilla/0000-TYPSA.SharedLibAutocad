@@ -11,9 +11,11 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
         )
         {
             // Declaramos lista de lineas vacía
-            var explodedLines = new List<Line>();
+            var result = new List<Line>();
 
-            // En caso de ser una poly
+            // ─────────────────────────────
+            // POLYLINE
+            // ─────────────────────────────
             if (ent is Polyline poly)
             {
                 // Obtenemos el ID original
@@ -36,7 +38,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
                     {
                         // Añadimos a la lista
                         lines.Add(line);
-                        explodedLines.Add(line);
+                        result.Add(line);
                     }
                     else
                     {
@@ -52,7 +54,10 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
                 // Eliminamos el clon
                 clone.Dispose();
             }
-            // En caso de ser una linea
+
+            // ─────────────────────────────
+            // LINE
+            // ─────────────────────────────
             else if (ent is Line line)
             {
                 // Clonamos la linea
@@ -61,14 +66,37 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
                 if (clone != null)
                 {
                     // Añadimos el clon
-                    explodedLines.Add(clone);
+                    result.Add(clone);
                     // Almacenamos en el dicc
                     dictPolyIdExplodedLines[line.ObjectId] = new List<Line> { clone };
                 }
             }
 
+            // ─────────────────────────────
+            // ARC → línea directa Start–End
+            // ─────────────────────────────
+            else if (ent is Arc arc)
+            {
+                ObjectId originalId = arc.ObjectId;
+
+                // Clonamos el arco
+                Arc clone = arc.Clone() as Arc;
+                // Validamos
+                if (clone != null)
+                {
+                    // Creamos linea entre inicio y fin
+                    Line arcAsLine = new Line(clone.StartPoint, clone.EndPoint);
+                    // Añadimos linea
+                    result.Add(arcAsLine);
+                    // Almacenamos en el dicc
+                    dictPolyIdExplodedLines[originalId] = new List<Line> { arcAsLine };
+                    // Eliminamos el clon
+                    clone.Dispose();
+                }
+            }
+
             // return
-            return explodedLines;
+            return result;
         }
 
 

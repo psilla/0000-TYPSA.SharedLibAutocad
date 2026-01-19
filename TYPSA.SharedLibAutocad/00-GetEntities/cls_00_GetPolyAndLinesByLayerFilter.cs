@@ -13,14 +13,18 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             HashSet<string> capasValidas,
             out int lineCount,
             out int polylineCount,
+            out int arcCount,
             out HashSet<string> capasUsadas
         )
         {
             // Collection de lines/poly a incluir
-            DBObjectCollection allLinesAndPoly = new DBObjectCollection();
+            DBObjectCollection result = new DBObjectCollection();
+
             // Contadores
             lineCount = 0;
             polylineCount = 0;
+            arcCount = 0;
+
             // Capas usadas
             capasUsadas = new HashSet<string>();
 
@@ -37,7 +41,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 if (ent == null) continue;
 
                 // Validamos tipo
-                if (ent is Line || ent is Polyline)
+                if (ent is Line || ent is Polyline || ent is Arc)
                 {
                     // Obtenemos la capa
                     LayerTableRecord layer = cls_00_DocumentInfo.GetLayerFromEntityForRead(tr, lt, ent);
@@ -50,17 +54,18 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                     if (capaVisible && entidadVisible && capasValidas.Contains(ent.Layer))
                     {
                         // Almacenamos
-                        allLinesAndPoly.Add(ent);
+                        result.Add(ent);
                         capasUsadas.Add(ent.Layer);
 
                         // Contamos
                         if (ent is Line) lineCount++;
                         else if (ent is Polyline) polylineCount++;
+                        else if (ent is Arc) arcCount++;
                     }
                 }
             }
             // return
-            return allLinesAndPoly;
+            return result;
         }
 
 

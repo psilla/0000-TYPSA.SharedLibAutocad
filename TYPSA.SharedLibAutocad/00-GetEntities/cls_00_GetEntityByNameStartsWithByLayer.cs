@@ -1,23 +1,37 @@
-﻿using System.Windows.Forms;
+﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using TYPSA.SharedLib.Autocad.GetLayersInfo;
 using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
-    public class cls_00_GetBlockRefByNameStartsWith
+    public class cls_00_GetEntityByNameStartsWithByLayer
     {
-        public static PromptSelectionResult GetBlockRefByNameStartsWith(
+        public static PromptSelectionResult GetEntityByNameStartsWithAndByLayer(
+            List<string> docLayers,
             Editor ed,
             string entityTag,
-            string startsWith
+            string startsWith,
+            string entityType,
+            string layerNameByDefault = null
         )
         {
+            // Pedimos la capa al usuario
+            string layerName = cls_00_AskLayerNameFromUser.AskLayerNameFromUser(
+                docLayers, entityTag, layerNameByDefault
+            );
+
+            // En caso de null, finalizamos
+            if (layerName == null) return null;
+
             // Definir el filtro por nombre de bloque y tipo de entidad
             var filtros = new TypedValue[]
             {
-                new TypedValue((int)DxfCode.Start, "INSERT"),
-                new TypedValue((int)DxfCode.BlockName, startsWith)
+                new TypedValue((int)DxfCode.LayerName, layerName),
+                new TypedValue((int)DxfCode.Start, entityType),
+                //new TypedValue((int)DxfCode.BlockName, startsWith)
             };
 
             // Realizar la selección
@@ -38,7 +52,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // return
             return psr;
         }
-
 
     }
 }

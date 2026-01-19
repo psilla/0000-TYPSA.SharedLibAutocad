@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using Autodesk.AutoCAD.DatabaseServices;
+﻿using Autodesk.AutoCAD.DatabaseServices;
+using System.Collections.Generic;
 
 namespace TYPSA.SharedLib.Autocad.GetLayersInfo
 {
@@ -8,24 +8,24 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
         public static List<string> GetLayerNamesFromDocOrXref(
             BlockTable bt,
             Transaction tr,
-            bool boolXrefOrDoc,
+            bool isXrefDocument,
             string xrefFilePath = null
         )
         {
             // Definimos por defecto
             List<string> layers = null;
 
-            // Active Doc
-            if (!boolXrefOrDoc)
-            {
-                // Obtenemos todas las capas filtradas
-                layers = cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt();
-            }
             // Xref
-            else
+            if (isXrefDocument)
             {
                 // Obtenemos todas las capas filtradas
                 layers = cls_00_GetLayerNamesFromXref.GetLayerNamesFromXref(bt, tr, xrefFilePath);
+            }
+            // Active Doc
+            else
+            {
+                // Obtenemos todas las capas filtradas
+                layers = cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt();
             }
             // return
             return (layers != null && layers.Count > 0) ? layers : null;

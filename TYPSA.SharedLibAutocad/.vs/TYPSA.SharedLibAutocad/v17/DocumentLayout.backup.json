@@ -3,36 +3,16 @@
   "WorkspaceRootPath": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawentities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawentities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getentities\\cls_00_getentitybylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getentities\\cls_00_getentitybylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawcircle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawcircle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getentities\\cls_00_getblockrefbylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getentities\\cls_00_getblockrefbylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawpoint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawdbtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawdbtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawmtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawmtext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawline.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawmleader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawmleader.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-drawentities\\cls_00_drawpoly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-drawentities\\cls_00_drawpoly.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getlayersinfo\\cls_00_asklayernamefromuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getlayersinfo\\cls_00_asklayernamefromuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -75,14 +55,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "cls_00_DrawEntities.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawEntities.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawEntities.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawEntities.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawEntities.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAASAAAAAAAAAA==",
+              "Title": "cls_00_GetEntityByLayer.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetEntityByLayer.cs",
+              "RelativeDocumentMoniker": "00-GetEntities\\cls_00_GetEntityByLayer.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetEntityByLayer.cs",
+              "RelativeToolTip": "00-GetEntities\\cls_00_GetEntityByLayer.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwDcAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:35:47.748Z",
+              "WhenOpened": "2025-12-23T14:14:05.964Z",
               "EditorCaption": ""
             }
           ]
@@ -149,108 +129,43 @@
       "Orientation": 0,
       "VerticalTabListWidth": 256,
       "FloatingWindowState": {
-        "Id": "5a215b70-12c1-47b3-9399-07ae14b93a60",
+        "Id": "59e1a7bf-9b9a-4972-9b66-af23e93ea97c",
         "Display": 1,
-        "X": 338,
-        "Y": 186,
-        "Width": 1230,
-        "Height": 742,
+        "X": 994,
+        "Y": 263,
+        "Width": 991,
+        "Height": 695,
         "WindowState": 2
       },
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "cls_00_DrawDBtext.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawDBtext.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawDBtext.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawDBtext.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawDBtext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:36:18.451Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "cls_00_DrawMtext.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawMtext.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawMtext.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawMtext.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawMtext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAuAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:39:18.499Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "cls_00_DrawMleader.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawMleader.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawMleader.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawMleader.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawMleader.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:41:47.994Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "cls_00_DrawPoly.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawPoly.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawPoly.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawPoly.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawPoly.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:43:08.466Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "cls_00_DrawLine.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawLine.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawLine.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawLine.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawLine.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:45:00.309Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "cls_00_DrawPoint.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawPoint.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawPoint.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawPoint.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawPoint.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAKAAAAAAAAAA==",
+              "Title": "cls_00_AskLayerNameFromUser.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
+              "RelativeDocumentMoniker": "00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
+              "RelativeToolTip": "00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAADgvyoAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:46:06.043Z",
+              "WhenOpened": "2025-12-23T14:11:27.538Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "cls_00_DrawCircle.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawCircle.cs",
-              "RelativeDocumentMoniker": "00-DrawEntities\\cls_00_DrawCircle.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-DrawEntities\\cls_00_DrawCircle.cs",
-              "RelativeToolTip": "00-DrawEntities\\cls_00_DrawCircle.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAgAAAAAAAAAA==",
+              "Title": "cls_00_GetBlockRefByLayer.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
+              "RelativeDocumentMoniker": "00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
+              "RelativeToolTip": "00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-17T13:47:43.901Z",
+              "WhenOpened": "2025-12-23T14:07:12.868Z",
               "EditorCaption": ""
             }
           ]

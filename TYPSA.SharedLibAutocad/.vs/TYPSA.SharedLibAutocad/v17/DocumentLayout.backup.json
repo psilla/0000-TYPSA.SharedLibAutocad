@@ -5,14 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getentities\\cls_00_getentitybylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getentities\\cls_00_getentitybylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getentities\\cls_00_getblockrefbylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getentities\\cls_00_getblockrefbylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getlayersinfo\\cls_00_asklayernamefromuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getlayersinfo\\cls_00_asklayernamefromuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -60,7 +52,7 @@
               "RelativeDocumentMoniker": "00-GetEntities\\cls_00_GetEntityByLayer.cs",
               "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetEntityByLayer.cs",
               "RelativeToolTip": "00-GetEntities\\cls_00_GetEntityByLayer.cs",
-              "ViewState": "AgIAACIAAAAAAAAAAAAQwDcAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwAUAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-12-23T14:14:05.964Z",
               "EditorCaption": ""
@@ -120,53 +112,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "Orientation": 0,
-      "VerticalTabListWidth": 256,
-      "FloatingWindowState": {
-        "Id": "59e1a7bf-9b9a-4972-9b66-af23e93ea97c",
-        "Display": 1,
-        "X": 994,
-        "Y": 263,
-        "Width": 991,
-        "Height": 695,
-        "WindowState": 2
-      },
-      "DocumentGroups": [
-        {
-          "DockedWidth": 200,
-          "SelectedChildIndex": 1,
-          "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "cls_00_AskLayerNameFromUser.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
-              "RelativeDocumentMoniker": "00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
-              "RelativeToolTip": "00-GetLayersInfo\\cls_00_AskLayerNameFromUser.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAADgvyoAAAAgAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-23T14:11:27.538Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "cls_00_GetBlockRefByLayer.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
-              "RelativeDocumentMoniker": "00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
-              "RelativeToolTip": "00-GetEntities\\cls_00_GetBlockRefByLayer.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-23T14:07:12.868Z",
-              "EditorCaption": ""
             }
           ]
         }

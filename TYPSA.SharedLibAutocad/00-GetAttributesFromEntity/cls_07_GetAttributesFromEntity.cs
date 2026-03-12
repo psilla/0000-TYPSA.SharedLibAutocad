@@ -8,14 +8,13 @@ namespace TYPSA.SharedLib.Autocad.GetAttribute
 {
     public class cls_07_GetAttributesFromEntity
     {
-
         public static string GetAttributeValueFromBlockReference(
             BlockReference blockRef,
-            string tagName,
+            string attrName,
             Transaction tr
         )
         {
-            // Validación
+            // Validamos
             if (blockRef == null || blockRef.AttributeCollection.Count == 0) return null;
 
             // Lista de etiquetas encontradas
@@ -35,7 +34,7 @@ namespace TYPSA.SharedLib.Autocad.GetAttribute
                 // Almacenamos
                 availableTags.Add(attRef.Tag);
                 // Validamos
-                if (attRef.Tag.Equals(tagName, StringComparison.OrdinalIgnoreCase))
+                if (attRef.Tag.Equals(attrName, StringComparison.OrdinalIgnoreCase))
                     // return
                     return attRef.TextString.Trim();
             }
@@ -45,16 +44,12 @@ namespace TYPSA.SharedLib.Autocad.GetAttribute
                 ? string.Join(", ", availableTags)
                 : "(No attributes found)";
 
-            // Mensaje
-            MessageBox.Show(
-                $"The attribute with tag \"{tagName}\" was not found in block \"{blockRef.Name}\".\n" +
-                $"Available tags: {availableList}",
-                "Missing Attribute"
-            );
-
             // Finalizamos
             return null;
         }
+
+        
+
 
 
 

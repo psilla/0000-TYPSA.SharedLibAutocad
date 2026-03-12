@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using TYPSA.SharedLib.UserForms;
 
@@ -13,12 +14,12 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
         {
             // Form para elegir las capas que contienen los metodos de instalacion
             List<string> layersByUser =
-                InstanciarFormularios.CheckListBoxFormSelectedItemsOut(
+                InstanciarFormularios.CheckListBoxFormSearchOut(
                     messagePrompt + "\n\n" +
                     "By default, the following layers will be automatically selected if they exist in the drawing:\n" +
                     string.Join(", ", defaultLayers),
                     cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt(),
-                    defaultLayers
+                    defaultLayers.ToList()
                 );
             // Validamos
             if (layersByUser == null || layersByUser.Count == 0)

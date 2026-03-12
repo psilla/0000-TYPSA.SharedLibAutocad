@@ -1,105 +1,110 @@
 ﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
+using System.Windows.Forms;
 using TYPSA.SharedLib.Autocad.DbObjectsByType;
 using TYPSA.SharedLib.Autocad.GetDocument;
 using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
 {
+    public class AutocadSettings
+    {
+        // Separadores validos
+        public char[] ValidSeparators { get; set; } = { '.', '-', '_', ',', ';' };
+        // Tokens que NO deben crear un nuevo campo
+        public List<string> NonSplittableTokens { get; set; } = new List<string>{ "+/", "+/-", "-/+", "+", "-" };
+
+        public static AutocadSettings GetDefaultSettings()
+        {
+            return new AutocadSettings();
+        }
+    }
     public class cls_00_MTextObjectsByLayer
     {
-        public static List<DBObject> get_MTextObjectsByLayer_FromDicc(
-            Document doc,
-            bool filterByLayer = false
+        public static string GetAlphabeticFieldKey(
+            string fieldValue
         )
         {
-            // Obtenemos el nombre del documento sin extensión
-            string docName = cls_00_DocumentInfo.GetActiveDocumentName(doc);
-
-            // Obtenemos el diccionario original
-            Dictionary<string, List<DBObject>> diccEntities =
-                cls_00_DbObjectsByType.dicc_DbObjects_ByType(doc);
             // Validamos
-            if (diccEntities == null || diccEntities.Count == 0 ||
-                !diccEntities.ContainsKey("MText"))
-            {
-                // Mensaje
-                new AutoCloseMessageForm(
-                    $"No MText entities were found in '{docName}'.\n\n" +
-                    $"This file will not be processed."
-                ).ShowDialog();
-                // Finalizamos
-                return null;
-            }
+            if (string.IsNullOrWhiteSpace(fieldValue)) return null;
 
-            // Nos quedamos solo con los MText
-            List<DBObject> mtextObjects = diccEntities["MText"];
-            // Validamos
-            if (mtextObjects == null || mtextObjects.Count == 0)
-            {
-                // Mensaje
-                new AutoCloseMessageForm(
-                    $"No MText entities were found in '{docName}'.\n\n" +
-                    $"This file will not be processed."
-                ).ShowDialog();
-                // Finalizamos
-                return null;
-            }
-
-            // Si no filtramos por capa, devolvemos directamente
-            if (!filterByLayer) return mtextObjects;
-
-            // Obtener capas unicas de esos objetos
-            HashSet<string> allLayers = new HashSet<string>();
-            // Iteramos
-            foreach (var obj in mtextObjects.OfType<Entity>())
-            {
-                // Almacenamos
-                allLayers.Add(obj.Layer);
-            }
-
-            // Mostrar CheckList para capas
-            List<string> selectedLayers = InstanciarFormularios.CheckListBoxFormOut(
-                $"Select the Layers to analyze in '{docName}'.\n" +
-                $"Use Ctrl + A / Ctrl + D to Select / Deselect all.",
-                allLayers.OrderBy(x => x).ToList()
-            );
-            // Validamos
-            if (selectedLayers == null || selectedLayers.Count == 0)
-            {
-                // Mensaje
-                new AutoCloseMessageForm(
-                    $"No Layers were selected in '{docName}'.\n\n" +
-                    $"This file will not be processed."
-                ).ShowDialog();
-                // Finalizamos
-                return null;
-            }
-
-            // Filtrar objetos por las capas seleccionadas
-            List<DBObject> objetos = mtextObjects
-                .Where(obj => obj is Entity ent && selectedLayers.Contains(ent.Layer))
-                .ToList();
-            // Validamos
-            if (objetos == null || objetos.Count == 0)
-            {
-                // Mensaje
-                new AutoCloseMessageForm(
-                    $"No MText entities were found after filtering by layer in '{docName}'.\n\n" +
-                    $"This file will not be processed."
-                ).ShowDialog();
-                // Finalizamos
-                return null;
-            }
+            // Extrae solo letras 
+            string key = new string(fieldValue
+                .Where(char.IsLetter)
+                .ToArray());
             // return
-            return objetos;
+            return key;
         }
 
+        public static bool AllLabelsHaveSameFieldCount(
+            Transaction tr,
+            IEnumerable<ObjectId> labelIds,
+            AutocadSettings autoSettings,
+            out int fieldCount,
+            out List<string> referenceFields
+        )
+        {
+            fieldCount = -1;
+            referenceFields = null;
+            // Iteramos
+            foreach (ObjectId id in labelIds)
+            {
+                // Obtenemos objeto
+                DBObject dbObj = tr.GetObject(id, OpenMode.ForRead);
 
-        public static List<string> GetMTextValues(List<DBObject> mtextObjects)
+                string labelValue = null;
+                // Validamos tipo
+                if (dbObj is MText mText)
+                    labelValue = mText.Contents;
+                else if (dbObj is DBText dbText)
+                    labelValue = dbText.TextString;
+                else
+                    continue;
+
+                // Extraemos campos
+                List<string> fieldValues = SplitLabelValueByCondAndToken(autoSettings, labelValue);
+                // Validamos
+                if (fieldValues == null || fieldValues.Count == 0) continue;
+                // Validamos
+                if (fieldCount < 0)
+                {
+                    fieldCount = fieldValues.Count;
+                    referenceFields = new List<string>(fieldValues);
+                }
+                else if (fieldValues.Count != fieldCount)
+                {
+                    // Mensaje
+                    MessageBox.Show(
+                        "All labels must have the same number of fields.\n" +
+                        $"Expected: {fieldCount}, Found: {fieldValues.Count}",
+                        "Invalid Label Format",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error
+                    );
+                    // Finalizamos
+                    return false;
+                }
+            }
+            // Validamos
+            if (fieldCount < 0 || referenceFields == null)
+            {
+                // Mensaje
+                MessageBox.Show(
+                    "No valid labels were found to process.", "Invalid Labels",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning
+                );
+                // Finalizamos
+                return false;
+            }
+            // return
+            return true;
+        }
+
+        public static List<string> GetMTextValues(
+            List<DBObject> mtextObjects
+        )
         {
             List<string> values = new List<string>();
             // Iteramos
@@ -129,14 +134,14 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
         }
 
         public static List<List<string>> SplitLabelValuesByCond(
+            AutocadSettings autoSettings,
             List<string> etiquetas
         )
         {
-            // Separadores válidos
-            char[] validSeparators = { '.', '-', '_', ',', ';' };
+            // Separadores posibles
+            char[] validSeparators = autoSettings.ValidSeparators;
 
             List<List<string>> result = new List<List<string>>();
-
             // Iteramos sobre cada etiqueta
             foreach (string et in etiquetas)
             {
@@ -156,24 +161,88 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
         }
 
         public static List<string> SplitLabelValueByCond(
-            string etiqueta
+            AutocadSettings autoSettings,
+            string labelValue
         )
         {
-            // Separadores válidos
-            char[] validSeparators = { '.', '-', '_', ',', ';' };
+            // Separadores posibles
+            char[] validSeparators = autoSettings.ValidSeparators;
 
-            // Validar la etiqueta
-            if (string.IsNullOrWhiteSpace(etiqueta)) 
+            // Validamos
+            if (string.IsNullOrWhiteSpace(labelValue))
                 return new List<string>();
 
             // Separar por cualquiera de los separadores válidos
-            List<string> parts = etiqueta
+            List<string> parts = labelValue
                 .Split(validSeparators, StringSplitOptions.RemoveEmptyEntries)
                 .Select(p => p.Trim())
                 .ToList();
             // return
             return parts;
         }
+
+        public static List<string> SplitLabelValueByCondAndToken(
+            AutocadSettings autoSettings,
+            string labelValue
+        )
+        {
+            char[] validSeparators = autoSettings.ValidSeparators;
+            // Split inicial
+            List<string> rawParts = labelValue
+                .Split(validSeparators, StringSplitOptions.RemoveEmptyEntries)
+                .Select(p => p.Trim())
+                .ToList();
+
+            List<string> result = new List<string>();
+
+            foreach (string part in rawParts)
+            {
+                if (IsNonSplittableToken(autoSettings, part) && result.Count > 0)
+                {
+                    // Se adjunta al campo anterior
+                    result[result.Count - 1] += " " + part;
+                }
+                else
+                {
+                    result.Add(part);
+                }
+            }
+
+            return result;
+        }
+
+        private static bool IsNonSplittableToken(
+            AutocadSettings settings,
+            string value
+        )
+        {
+            // return
+            return settings.NonSplittableTokens
+                .Any(t => string.Equals(t, value, StringComparison.Ordinal));
+        }
+
+        public static char GetLabelSeparator(
+            AutocadSettings autoSettings,
+            string labelValue
+        )
+        {
+            // Separadores posibles
+            char[] validSeparators = autoSettings.ValidSeparators;
+            // Iteramos
+            foreach (char c in labelValue)
+            {
+                // Validamos
+                if (validSeparators.Contains(c)) return c;
+            }
+            // Por defecto
+            return ' ';
+        }
+
+        
+
+        
+
+        
 
 
 

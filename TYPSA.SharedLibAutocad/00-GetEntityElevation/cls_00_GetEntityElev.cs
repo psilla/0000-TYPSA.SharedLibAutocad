@@ -18,7 +18,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntityElevation
         )
         {
             commonElevation = 0.0;
-
+            // Validamos
             if (psr == null || psr.Status != PromptStatus.OK || psr.Value.Count == 0)
                 return false;
 
@@ -47,6 +47,11 @@ namespace TYPSA.SharedLib.Autocad.GetEntityElevation
                 else if (dbObj is MText mt)
                 {
                     elev = mt.Location.Z;
+                }
+                // DBText
+                else if (dbObj is DBText dt)
+                {
+                    elev = dt.Position.Z;
                 }
                 else
                 {

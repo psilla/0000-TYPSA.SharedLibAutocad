@@ -23,7 +23,7 @@ namespace TYPSA.SharedLib.Autocad.GetLoadedXref
 
             // Form para elegir el Xref
             string selectedXref =
-                InstanciarFormularios.CheckListBoxFormUniqueSelectionOut(
+                InstanciarFormularios.CheckListBoxFormUniqueSelectionSearchOut(
                     "Select the XREF to analyze:", DictXrefsKeys
                 );
             // Validamos

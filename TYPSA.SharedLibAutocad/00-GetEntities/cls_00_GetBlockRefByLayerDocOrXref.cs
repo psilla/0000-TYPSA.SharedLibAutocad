@@ -16,10 +16,12 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             string entityTag,
             string layerNameByDefault,
             string entityType,
-            out HashSet<ObjectId> entIds
+            out HashSet<ObjectId> entIds,
+            out string entityLayer
         )
         {
             entIds = null;
+            entityLayer = null;
             // Xref
             if (isXrefDocument)
             {
@@ -34,6 +36,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 bool entityBool = cls_00_GetBlockRefByLayerFromXref.GetBlockRefIdsByLayerFromXref(
                     xrefBtr, tr, selectedLayer, out entIds
                 );
+
+                // Asignamos
+                entityLayer = selectedLayer;
+
                 // return
                 return entityBool;
             }
@@ -42,7 +48,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             {
                 // Seleccionamos por tipo de objeto y capa
                 PromptSelectionResult psrEntity = cls_00_GetEntityByLayer.GetEntityByLayer(
-                    layersDocOrXref, ed, entityTag, entityType, layerNameByDefault
+                    layersDocOrXref, ed, entityTag, entityType, out entityLayer, layerNameByDefault
                 );
                 // Validamos
                 if (psrEntity == null) return false;

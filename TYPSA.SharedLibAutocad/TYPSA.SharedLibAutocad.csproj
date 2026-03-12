@@ -109,9 +109,6 @@
     <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Security.Cryptography.Pkcs, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>packages\System.Security.Cryptography.Pkcs.8.0.0\lib\net462\System.Security.Cryptography.Pkcs.dll</HintPath>
@@ -140,11 +137,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="00-CollectorByObjectType\cls_00_ObjectsByTypeByLayerFilt.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_ObjectsByTypeByLayer.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_GetAllDbObjectTypes.cs" />
     <Compile Include="00-CollectorByObjectType\cls_00_MTextObjectsByLayer.cs" />
-    <Compile Include="00-CollectorByObjectType\cls_00_DbObjectsByType.cs" />
     <Compile Include="00-DeleteEntities\cls_00_DeleteEntity.cs" />
     <Compile Include="00-Document\cls_00_DocumentInfo.cs" />
     <Compile Include="00-DrawEntities\cls_00_DrawCircle.cs" />
@@ -206,6 +201,7 @@
     <Compile Include="00-GraphAndNodeClass\cls_00_GraphClass.cs" />
     <Compile Include="00-GraphAndNodeClass\cls_00_NodeClass.cs" />
     <Compile Include="00-IsolateEntities\cls_00_IsolateEntities.cs" />
+    <Compile Include="00-MetricsSender\cls_00_MetricsSerapis.cs" />
     <Compile Include="00-MetricsSender\cls_00_MetricsSender.cs" />
     <Compile Include="00-ProcessPolyAndRegion\cls_00_ProcessPolysToRegions.cs" />
     <Compile Include="00-ProcessPolyAndRegion\cls_00_ProcessPolyAndRegion.cs" />

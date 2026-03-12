@@ -19,7 +19,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                 .OrderBy(l => l, StringComparer.OrdinalIgnoreCase)
                 .ToList();
 
-            // Mostramos formulario con CheckList
+            // Form
             string selectedLayer = InstanciarFormularios.CheckListBoxFormUniqueSelectionSearchOut(
                 $"Select the layer that contains the {objeto}:",
                 orderedLayers, layerNameByDefault

@@ -35,11 +35,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 .Select(br => br.Name).Distinct().OrderBy(n => n).ToList();
 
             // Form
-            List<string> blockRefNamesSelected = InstanciarFormularios.
-                CheckListBoxFormOut(
+            List<string> blockRefNamesSelected = InstanciarFormularios.CheckListBoxFormSearchOut(
                 "Select block names to filter:\n" +
-                $"Use Ctrl + A / Ctrl + D to Select / Deselect all.",
-                blockRefNames
+                $"Use Ctrl + A / Ctrl + D to Select / Deselect all.", 
+                blockRefNames, blockRefNames
             );
             // Validamos
             if (blockRefNamesSelected == null || blockRefNamesSelected.Count == 0) return null;

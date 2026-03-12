@@ -33,12 +33,7 @@ namespace TYPSA.SharedLib.Autocad.ProjectCustomProp
             Document doc
         )
         {
-            Editor ed = doc.Editor;
             Dictionary<string, string> customProperties = new Dictionary<string, string>();
-
-            // Definimos variable
-            string msg = "Project Custom Properties";
-
             // Abrimos transaccion
             using (Transaction tr = doc.TransactionManager.StartTransaction())
             {
@@ -51,47 +46,31 @@ namespace TYPSA.SharedLib.Autocad.ProjectCustomProp
                     // Obtener las propiedades personalizadas usando la extensión
                     customProperties = GetCustomProperties(db);
 
-                    // Construye el mensaje con las propiedades personalizadas
-                    StringBuilder messageProperties = new StringBuilder();
-                    messageProperties.AppendLine($"{msg}:");
-                    // Validamos
-                    if (customProperties.Count > 0)
-                    {
-                        // Iteramos
-                        foreach (var prop in customProperties)
-                        {
-                            // Añadimos
-                            messageProperties.AppendLine(
-                                $"{prop.Key}: {prop.Value}"
-                            );
-                        }
-                    }
-                    else
-                    {
-                        // Añadimos
-                        messageProperties.AppendLine(
-                            $"No {msg} were found in the document."
-                        );
-                    }
-
-                    //// Mensaje
-                    //MessageBox.Show(
-                    //    messageProperties.ToString(),
-                    //    "Project Information"
-                    //);
-
                     // Cerramos transaccion
                     tr.Commit();
                 }
                 // catch
                 catch (System.Exception ex)
                 {
-                    ed.WriteMessage($"\nError: {ex.Message}");
+                    // Mensaje
                     MessageBox.Show(
-                        $"Error: {ex.Message}",
-                        "Error"
+                        $"Error retrieving project custom properties:\n\n{ex.Message}",
+                        "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error
                     );
+                    // Finalizamos
+                    return customProperties;
                 }
+            }
+            // Validamos
+            if (customProperties == null || customProperties.Count == 0)
+            {
+                // Mensaje
+                MessageBox.Show(
+                    "No project custom properties were found in the document.",
+                    "Project Custom Properties",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information
+                );
             }
             // return
             return customProperties;

@@ -8,6 +8,122 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
 {
     public class cls_00_GetEntityDictByRegion
     {
+        private static bool BelongsToRegionByEntity(
+            DBObject obj, 
+            Region region
+        )
+        {
+            // Casos
+            switch (obj)
+            {
+                case BlockReference bloque:
+                    return BelongsBlockToRegion(bloque, region);
+
+                case Polyline poly:
+                    return BelongsPolylineToRegion(poly, region);
+
+                case MText mText:
+                    return BelongsMTextToRegion(mText, region);
+
+                case DBText dbText:
+                    return BelongsDBTextToRegion(dbText, region);
+
+                default:
+                    return false;
+            }
+        }
+
+        private static bool BelongsBlockToRegion(
+            BlockReference bloque, 
+            Region region
+        )
+        {
+            // Intento 1: Pto base
+            Point3d point = cls_00_GetEntityInsertionPoint.GetEntityInsertionPoint(bloque);
+            // Validamos
+            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region)) return true;
+
+            // Intento 2: Centroide
+            point = cls_00_GetElemByRegionByBrep.GetBlockReferenceCentroid(bloque);
+            // return
+            return cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region);
+        }
+
+        private static bool BelongsPolylineToRegion(
+            Polyline poly, 
+            Region region
+        )
+        {
+            // Obtener el centroide de la Polyline
+            Point3d point = cls_00_GetElemByRegionByBrep.GetPolylineCentroid(poly);
+            // return
+            return cls_00_GetElemByRegionByBrep.PolyCentroidByRegionByBrep(point, region);
+        }
+
+        private static bool BelongsMTextToRegion(
+            MText mText, 
+            Region region
+        )
+        {
+            // Intento 1: Pto base
+            Point3d point = cls_00_GetEntityInsertionPoint.GetEntityInsertionPoint(mText);
+            // Validamos
+            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region)) return true;
+
+            // Intento 2: GeometricExtents
+            // try
+            try
+            {
+                Extents3d ext = mText.GeometricExtents;
+                // Obtenemos pto
+                point = new Point3d(
+                    (ext.MinPoint.X + ext.MaxPoint.X) * 0.5,
+                    (ext.MinPoint.Y + ext.MaxPoint.Y) * 0.5,
+                    (ext.MinPoint.Z + ext.MaxPoint.Z) * 0.5
+                );
+                // return
+                return cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region);
+            }
+            // catch
+            catch
+            {
+                // Por defecto
+                return false;
+            }
+        }
+
+        private static bool BelongsDBTextToRegion(
+            DBText dbText,
+            Region region
+        )
+        {
+            // Intento 1: Pto base
+            Point3d point = cls_00_GetEntityInsertionPoint.GetEntityInsertionPoint(dbText);
+            // Validamos
+            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region)) return true;
+
+            // Intento 2: GeometricExtents
+            // try
+            try
+            {
+                Extents3d ext = dbText.GeometricExtents;
+                // Obtenemos pto
+                point = new Point3d(
+                    (ext.MinPoint.X + ext.MaxPoint.X) * 0.5,
+                    (ext.MinPoint.Y + ext.MaxPoint.Y) * 0.5,
+                    (ext.MinPoint.Z + ext.MaxPoint.Z) * 0.5
+                );
+                // return
+                return cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region);
+            }
+            // catch
+            catch
+            {
+                // Por defecto
+                return false;
+            }
+        }
+
         public static Dictionary<string, List<DBObject>> GetEntityDictByRegionByPoint(
             Transaction tr,
             Region region,
@@ -16,7 +132,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
         {
             Dictionary<string, List<DBObject>> objetosPorRegion =
                 new Dictionary<string, List<DBObject>>();
-
             // try
             try
             {
@@ -39,99 +154,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         // Validamos
                         if (obj == null) continue;
 
-                        // En caso de ser BlockReference
-                        if (obj is BlockReference bloque)
+                        // Validamos en region
+                        if (BelongsToRegionByEntity(obj, region))
                         {
-                            // Validamos
-                            if (bloque == null) continue;
-
-                            bool belongToRegion = false;
-                            // Intento 1: Pto base
-                            Point3d point = cls_00_GetEntityInsertionPoint.
-                                GetEntityInsertionPoint(bloque);
-                            // Validamos
-                            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
-                            {
-                                // Almacenamos
-                                belongToRegion = true;
-                            }
-                            // Intento 2: Centroide
-                            else
-                            {
-                                point = cls_00_GetElemByRegionByBrep.GetBlockReferenceCentroid(bloque);
-                                // Validamos
-                                if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
-                                {
-                                    // Almacenamos
-                                    belongToRegion = true;
-                                }
-                            }
-                            // Validamos
-                            if (belongToRegion)
-                            {
-                                // Almacenamos
-                                objetosPorRegion[handleRegion].Add(bloque);
-                            }
-                        }
-                        // En caso de ser Polyline
-                        else if (obj is Polyline poly)
-                        {
-                            // Validamos
-                            if (poly == null) continue;
-                            // Obtener el centroide de la Polyline
-                            Point3d point = cls_00_GetElemByRegionByBrep.
-                                GetPolylineCentroid(poly);
-                            // Validamos
-                            if (cls_00_GetElemByRegionByBrep.PolyCentroidByRegionByBrep(point, region))
-                            {
-                                // Almacenamos
-                                objetosPorRegion[handleRegion].Add(poly);
-                            }
-                        }
-                        // En caso de ser MText
-                        else if (obj is MText mText)
-                        {
-                            bool belongToRegion = false;
-                            // Intento 1: Pto base
-                            Point3d point = cls_00_GetEntityInsertionPoint.
-                                GetEntityInsertionPoint(mText);
-                            // Validamos
-                            if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
-                            {
-                                // Almacenamos
-                                belongToRegion = true;
-                            }
-                            // Intento 2: GeometricExtents
-                            else
-                            {
-                                // try
-                                try
-                                {
-                                    Extents3d ext = mText.GeometricExtents;
-                                    // Obtenemos pto
-                                    point = new Point3d(
-                                        (ext.MinPoint.X + ext.MaxPoint.X) * 0.5,
-                                        (ext.MinPoint.Y + ext.MaxPoint.Y) * 0.5,
-                                        (ext.MinPoint.Z + ext.MaxPoint.Z) * 0.5
-                                    );
-                                    // Validamos
-                                    if (cls_00_GetElemByRegionByBrep.PointByRegionByBrep(point, region))
-                                    {
-                                        // Almacenamos
-                                        belongToRegion = true;
-                                    }
-                                }
-                                catch
-                                {
-                                    // Algunos MText pueden no tener extents válidos
-                                }
-                            }
-                            // Validamos
-                            if (belongToRegion)
-                            {
-                                // Almacenamos
-                                objetosPorRegion[handleRegion].Add(mText);
-                            }
+                            objetosPorRegion[handleRegion].Add(obj);
                         }
                     }
                     // catch
@@ -149,7 +175,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 // return
                 return objetosPorRegion;
             }
-            // catch
             catch (System.Exception ex)
             {
                 // Mensaje
@@ -237,7 +262,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         // Si no hay puntos, continuar
                         if (puntos.Count == 0) continue;
 
-                        // 🔹 Verificar si TODOS los puntos están dentro de la región
+                        // Verificar si TODOS los puntos están dentro de la región
                         bool allInside = cls_00_GetElemByRegionByBrep.PointsByRegionByBrep(puntos, region);
 
                         if (allInside)

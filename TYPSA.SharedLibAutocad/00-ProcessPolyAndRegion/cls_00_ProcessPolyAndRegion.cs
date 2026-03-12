@@ -57,7 +57,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPolyAndRegion
             double? offsetByUser = InstanciarFormularios.DoubleInputFormOut(
                 $"Enter the offset distance in ({projectUnits}) for {tags.SkidOutlineTag} " +
                 $"Polylines to see how many {tags.DcBlockTag} are contained within each one.",
-                "Distance selection form"
+                "Distance selection form", 1
             );
             // Validamos
             if (!offsetByUser.HasValue)

@@ -10,6 +10,81 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
 {
     public class cls_00_ProcessAllPoly
     {
+        public static ProcessPolyResult ProcessAllPolyAsEnt(
+            List<Entity> analyzePoly,
+            Transaction tr,
+            string entityTag,
+            string projectUnits
+        )
+        {
+            // Inicializar contadores
+            int allPolyCount = 0;
+            int nullPolyCount = 0;
+            int validPolyCount = 0;
+
+            // Conjunto para almacenar las polilíneas no válidas que serán aisladas antes de continuar con el proceso
+            HashSet<ObjectId> polyToIsolate = new HashSet<ObjectId>();
+
+            // Lista para almacenar polilíneas válidas para su posterior procesamiento
+            List<Polyline> validPoly = new List<Polyline>();
+
+            // StringBuilder para almacenar la información de polylines no válidas
+            StringBuilder infoPoly = new StringBuilder();
+
+            // Iterar sobre cada entidad
+            foreach (Entity ent in analyzePoly)
+            {
+                // Validamos
+                if (ent == null) continue;
+
+                // En caso de ser polyline
+                if (ent is Polyline poly)
+                {
+                    // Procesamos la poly
+                    cls_00_ProcessPoly.ProcessPoly(
+                        poly,
+                        polyToIsolate,
+                        infoPoly,
+                        validPoly,
+                        ref allPolyCount,
+                        ref nullPolyCount,
+                        ref validPolyCount,
+                        entityTag,
+                        projectUnits
+                    );
+                }
+            }
+
+            // Agregar el conteo total al inicio del `StringBuilder` de infoPoly
+            infoPoly.Insert(
+                0,
+                $"📌 Summary of {entityTag} Polylines:{Environment.NewLine}" +
+                $"🔹 Total {entityTag} Polylines analyzed: {allPolyCount}{Environment.NewLine}" +
+                $"⚠ Null or invalid {entityTag} Polylines: {nullPolyCount}{Environment.NewLine}" +
+                $"✅ Successfully processed {entityTag} Polylines: {validPolyCount}{Environment.NewLine}{Environment.NewLine}"
+            );
+
+            // Mostrar info
+            if (nullPolyCount > 0)
+            {
+                ShowStringBuilder.ShowInfo(
+                    $"⚠ {entityTag} Issues Found:",
+                    infoPoly.ToString()
+                );
+            }
+
+            // return
+            return new ProcessPolyResult
+            {
+                ValidPolylines = validPoly,
+                PolylinesToIsolate = polyToIsolate,
+                InfoSummary = infoPoly,
+                Total = allPolyCount,
+                NullCount = nullPolyCount,
+                ValidCount = validPolyCount
+            };
+        }
+
         public static ProcessPolyResult ProcessAllPoly(
             SelectionSet analyzePoly,
             Transaction tr,

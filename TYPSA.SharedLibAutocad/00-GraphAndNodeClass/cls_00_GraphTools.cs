@@ -121,7 +121,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         continue;
                     }
 
-                    // Ahora analizamos extremos coincidentes
+                    // Analizamos extremos coincidentes
                     var ends1 = GetEndPoints(ent1);
                     var ends2 = GetEndPoints(ent2);
 
@@ -131,7 +131,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                         {
                             if (p1.DistanceTo(p2) < 1e-6)
                             {
-                                if (injectedPoints.Add(p1)) // p1 ≈ p2
+                                if (injectedPoints.Add(p1))
                                 {
                                     InjectPointIntoGraph(p1, ent1, graph);
                                     InjectPointIntoGraph(p2, ent2, graph);

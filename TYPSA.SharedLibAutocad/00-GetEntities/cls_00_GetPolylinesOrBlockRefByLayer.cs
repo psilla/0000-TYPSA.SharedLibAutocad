@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using TYPSA.SharedLib.Autocad.GetLayersInfo;
+using TYPSA.SharedLib.Autocad.Main;
 using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
@@ -24,8 +25,9 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // En caso de null, finalizamos
             if (layerName == null) return null;
 
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
             // Determinar el tipo de entidad a filtrar
-            string filtro = boolDcBlocksBool ? "INSERT" : "LWPOLYLINE";
+            string filtro = boolDcBlocksBool ? entityTypes.BlockReference : entityTypes.Polyline;
 
             // Definimos la selección
             PromptSelectionResult psr = cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(

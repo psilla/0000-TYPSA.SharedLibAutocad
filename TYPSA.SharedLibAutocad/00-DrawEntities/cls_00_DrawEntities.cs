@@ -109,7 +109,7 @@ namespace TYPSA.SharedLib.Autocad.DrawEntities
                 .ToDictionary(j => j.ToString(), j => j);
 
             // Form
-            string selected = InstanciarFormularios.DropDownFormListOut(
+            string selected = cls_00_InstaForm_ComboBox.ComboBoxFormListOut(
                 $"Select the justification for the labels:",
                 justifications.Keys.OrderBy(k => k).ToList(),
                 "Selection form to choose a text Justification",
@@ -133,7 +133,7 @@ namespace TYPSA.SharedLib.Autocad.DrawEntities
         )
         {
             // Mostramos formulario para elegir el estilo de texto
-            string textStyle = InstanciarFormularios.DropDownFormListOut(
+            string textStyle = cls_00_InstaForm_ComboBox.ComboBoxFormListOut(
                 $"Select the text style to use for the labels:",
                 textStyles.OrderBy(s => s, StringComparer.OrdinalIgnoreCase).ToList(),
                 "Selection form to choose a text Style",

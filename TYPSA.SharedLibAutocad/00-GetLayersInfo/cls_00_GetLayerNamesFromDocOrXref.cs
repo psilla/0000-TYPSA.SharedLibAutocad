@@ -12,9 +12,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
             string xrefFilePath = null
         )
         {
-            // Definimos por defecto
             List<string> layers = null;
-
             // Xref
             if (isXrefDocument)
             {
@@ -27,6 +25,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                 // Obtenemos todas las capas filtradas
                 layers = cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt();
             }
+
             // return
             return (layers != null && layers.Count > 0) ? layers : null;
         }

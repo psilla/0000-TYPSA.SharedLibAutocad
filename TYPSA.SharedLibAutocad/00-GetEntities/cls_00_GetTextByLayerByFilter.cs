@@ -40,6 +40,31 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // return
             return label;
         }
+
+        public static List<Entity> GetTextByLayerAndFilter(
+            BlockTable bt,
+            Transaction tr,
+            string entityTag,
+            string selectedLayer,
+            List<Func<string, bool>> filters = null
+        )
+        {
+            // Buscar entidades de texto en la capa seleccionada que cumplan las condiciones
+            List<Entity> label = TryGetTextByLayerAndFilter(
+                bt, tr, filters, selectedLayer
+            );
+            // Validamos
+            if (label == null || label.Count == 0)
+            {
+                // Mensaje
+                MessageBox.Show($"⚠ No {entityTag} found. Operation cancelled.", "Warning");
+                // Finalizamos
+                return null;
+            }
+            // return
+            return label;
+        }
+
         public static List<Entity> TryGetTextByLayerAndFilter(
             BlockTable bt,
             Transaction tr,

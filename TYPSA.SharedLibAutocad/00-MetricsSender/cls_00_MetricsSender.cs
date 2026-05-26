@@ -8,7 +8,12 @@ namespace TYPSA.SharedLib.Autocad.Metrics
 {
     public class cls_00_MetricsSender
     {
-        public static async Task SendMetricsAsync(string user, string accion, object[] executed_process, Object additionalData)
+        public static async Task SendMetricsAsync(
+            string user, 
+            string accion, 
+            object[] executed_process, 
+            Object additionalData
+        )
         {
             var url = "https://dlab.typsa.net/register-record-v2/api/v2/send/metrics";
 

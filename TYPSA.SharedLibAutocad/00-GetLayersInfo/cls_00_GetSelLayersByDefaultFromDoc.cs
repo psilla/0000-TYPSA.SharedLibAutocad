@@ -13,14 +13,13 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
         )
         {
             // Form para elegir las capas que contienen los metodos de instalacion
-            List<string> layersByUser =
-                InstanciarFormularios.CheckListBoxFormSearchOut(
-                    messagePrompt + "\n\n" +
-                    "By default, the following layers will be automatically selected if they exist in the drawing:\n" +
-                    string.Join(", ", defaultLayers),
-                    cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt(),
-                    defaultLayers.ToList()
-                );
+            List<string> layersByUser = cls_00_InstaForm_CheckedListBox.CheckListBoxFormSearchOut(
+                messagePrompt + "\n\n" +
+                "By default, the following layers will be automatically selected if they exist in the drawing:\n" +
+                string.Join(", ", defaultLayers),
+                cls_00_GetLayerNamesFromDocFilt.GetLayerNamesFromDocFilt(),
+                defaultLayers.ToList()
+            );
             // Validamos
             if (layersByUser == null || layersByUser.Count == 0)
             {
@@ -33,7 +32,8 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                 // Finalizamos
                 return null;
             }
-            // Convertir a HashSet y return
+
+            // return
             return new HashSet<string>(layersByUser);
         }
 

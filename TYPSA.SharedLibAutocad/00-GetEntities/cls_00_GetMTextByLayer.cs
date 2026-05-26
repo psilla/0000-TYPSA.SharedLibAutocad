@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using TYPSA.SharedLib.Autocad.GetLayersInfo;
+using TYPSA.SharedLib.Autocad.Main;
 using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
@@ -24,14 +25,15 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // En caso de null, finalizamos
             if (layerName == null) return null;
 
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
             // Definir el filtro 
             var filtros = new TypedValue[]
             {
                 new TypedValue((int)DxfCode.LayerName, layerName),
-                new TypedValue((int)DxfCode.Start, "MTEXT")
+                new TypedValue((int)DxfCode.Start, entityTypes.MText)
                 //new TypedValue((int)DxfCode.Operator, "<OR"),
-                //new TypedValue((int)DxfCode.Start, "TEXT"),
-                //new TypedValue((int)DxfCode.Start, "MTEXT"),
+                //new TypedValue((int)DxfCode.Start, entityTypes.Text),
+                //new TypedValue((int)DxfCode.Start, entityTypes.MText),
                 //new TypedValue((int)DxfCode.Operator, "OR>")
             };
 
@@ -82,14 +84,14 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // Fin OR
             filterValues.Add(new TypedValue((int)DxfCode.Operator, "OR>"));
 
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
             // Tipo de entidad
-            filterValues.Add(new TypedValue((int)DxfCode.Start, "MTEXT"));
+            filterValues.Add(new TypedValue((int)DxfCode.Start, entityTypes.MText));
 
             // Realizar la selección
-            PromptSelectionResult psr =
-                cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
-                    ed, filterValues.ToArray()
-                );
+            PromptSelectionResult psr = cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
+                ed, filterValues.ToArray()
+            );
             // Validamos 
             if (psr == null || psr.Status != PromptStatus.OK)
             {

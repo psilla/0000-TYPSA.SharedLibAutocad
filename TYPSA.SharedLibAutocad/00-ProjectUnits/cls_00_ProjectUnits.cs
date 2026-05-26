@@ -12,11 +12,10 @@ namespace TYPSA.SharedLib.Autocad.ProjectUnits
         public static string SetProjectUnits()
         {
             // Obtener diccionario completo de unidades
-            Dictionary<string, int> unitsDict =
-                cls_00_DocumentInfo.GetUnitsDictionary();
+            Dictionary<string, int> unitsDict = cls_00_DocumentInfo.GetUnitsDictionary();
 
             // Mostrar formulario de selección
-            string selectedUnit = InstanciarFormularios.DropDownFormListOut(
+            string selectedUnit = cls_00_InstaForm_ComboBox.ComboBoxFormListOut(
                 "Select the new units for the project:",
                 unitsDict.Keys.ToList(),
                 "Selection form to configure the project units"
@@ -53,8 +52,8 @@ namespace TYPSA.SharedLib.Autocad.ProjectUnits
                 $"False: Change to other units selected by the user.";
 
             // Form
-            object userChoice = InstanciarFormularios.DropDownFormOutWithFormText(
-                message, "Project Units Selection Form", true
+            object userChoice = cls_00_InstaForm_ComboBox.ComboBoxFormOut(
+                message, formText: "Project Units Selection Form", defaultValue: true
             );
             // Validamos
             if (!(userChoice is bool)) return null;

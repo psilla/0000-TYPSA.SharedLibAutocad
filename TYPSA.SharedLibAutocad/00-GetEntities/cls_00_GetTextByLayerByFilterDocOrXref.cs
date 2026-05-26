@@ -33,7 +33,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
 
                 // Obtenemos los ids
                 bool entityBool = cls_00_GetTextDbByLayerFromXref.GetTextDbByLayerFromXref(
-                    tr, layersDocOrXref, xrefBtr, selectedLayer, out entIds
+                    tr, xrefBtr, selectedLayer, out entIds
                 );
                 // return
                 return entityBool;
@@ -44,6 +44,45 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 // Obtenemos las entidades
                 List<Entity> ent = cls_00_GetTextByLayerByFilter.GetTextByLayerAndFilter(
                     bt, tr, layersDocOrXref, entityTag, filters?.ToList(), layerNameByDefault
+                );
+                // Validamos
+                if (ent == null) return false;
+
+                // Obtenemos los ids
+                entIds = ent.Select(e => e.ObjectId).ToHashSet();
+                // return
+                return true;
+            }
+        }
+
+        public static bool GetTextByLayerAndFilterDocOrXref(
+            bool isXrefDocument,
+            Transaction tr,
+            BlockTableRecord xrefBtr,
+            BlockTable bt,
+            string entityTag,
+            string selectedLayer,
+            out HashSet<ObjectId> entIds,
+            IEnumerable<Func<string, bool>> filters = null
+        )
+        {
+            entIds = null;
+            // Xref
+            if (isXrefDocument)
+            {
+                // Obtenemos los ids
+                bool entityBool = cls_00_GetTextDbByLayerFromXref.GetTextDbByLayerFromXref(
+                    tr, xrefBtr, selectedLayer, out entIds
+                );
+                // return
+                return entityBool;
+            }
+            // Active Document
+            else
+            {
+                // Obtenemos las entidades
+                List<Entity> ent = cls_00_GetTextByLayerByFilter.GetTextByLayerAndFilter(
+                    bt, tr, entityTag, selectedLayer, filters?.ToList()
                 );
                 // Validamos
                 if (ent == null) return false;

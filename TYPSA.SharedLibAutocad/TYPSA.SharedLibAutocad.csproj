@@ -229,6 +229,17 @@
     <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRight.cs" />
     <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRightTol.cs" />
     <Compile Include="00-ZoomToEntity\cls_00_ZoomToEntity.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckByLayerProp.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainGetPlogTag.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlockAttr.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckRevClouds.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckAcadVersion.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckEntInLayerZero.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckLayersInUse.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckPaperTextFont.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckProjUnits.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckXrefs.cs" />
+    <Compile Include="01-Main\cls_00_CivilInfoHelper.cs" />
     <Compile Include="01-Main\cls_00_ProcessResult.cs" />
     <Compile Include="02-Buttons\cls_00_GetUserData.cs" />
     <Compile Include="Program.cs" />

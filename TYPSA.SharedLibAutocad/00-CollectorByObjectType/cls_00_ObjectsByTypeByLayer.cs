@@ -48,7 +48,7 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
             // True
             if (askUser)
             {
-                userSelection = InstanciarFormularios.CheckListBoxFormSearchOut(
+                userSelection = cls_00_InstaForm_CheckedListBox.CheckListBoxFormSearchOut(
                     $"Select the {itemLabel} to analyze in '{fileName}'.\n" +
                     $"Use Ctrl + A / Ctrl + D to Select / Deselect all.",
                     allNames.OrderBy(x => x).ToList()
@@ -268,7 +268,7 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
             if (selectionMode == SelectionModes.Manual)
             {
                 // Form
-                userSelection = InstanciarFormularios.CheckListBoxFormSearchOut(
+                userSelection = cls_00_InstaForm_CheckedListBox.CheckListBoxFormSearchOut(
                     $"Select the {itemLabel} to analyze in '{fileName}'.\n" +
                     $"Use Ctrl + A / Ctrl + D to Select / Deselect all.",
                     allNames.OrderBy(x => x).ToList()

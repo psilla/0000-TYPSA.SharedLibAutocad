@@ -32,6 +32,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPolyAndRegion
             // ==========================
             // 1. Procesamos Polys
             // ==========================
+
             ProcessPolyResult dataPolys = cls_00_ProcessAllPoly.ProcessAllPoly(
                 analyzePoly, tr, entityTag, projectUnits
             );
@@ -56,6 +57,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPolyAndRegion
             // ==========================
             // 2. Procesamos Polys desfasadas
             // ==========================
+
             ProcessOffsetPolyResult dataOffsetPolys = cls_00_ProcessAllOffsetPoly.ProcessAllOffsetPoly(
                 validPolys, tr, btr, entityTag, offsetDistance
             );
@@ -84,6 +86,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPolyAndRegion
             // ==========================
             // 3. Procesamos regiones
             // ==========================
+
             ProcessRegionResult dataRegions = cls_00_ProcessAllRegion.ProcessAllRegion(
                 validOffsetPolysAndPolys, validOffsetPolys, dictPolyToOffsetPoly,
                 tr, btr, entityTag

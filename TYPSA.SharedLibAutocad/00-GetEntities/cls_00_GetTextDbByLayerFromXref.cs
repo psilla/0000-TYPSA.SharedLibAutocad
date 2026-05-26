@@ -10,7 +10,6 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
     {
         public static bool GetTextDbByLayerFromXref(
             Transaction tr,
-            List<string> layersFromXref,
             BlockTableRecord xrefBtr,
             string selectedLayer,
             out HashSet<ObjectId> textIds

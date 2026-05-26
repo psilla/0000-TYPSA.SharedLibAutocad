@@ -3,8 +3,11 @@
   "WorkspaceRootPath": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getentities\\cls_00_getentitybylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getentities\\cls_00_getentitybylayer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|c:\\0000-typsa.sharedlibautocad\\typsa.sharedlibautocad\\00-getentityelevation\\cls_00_getentityelev.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{631B9318-A021-4B24-87F0-3FEC637EAE77}|TYPSA.SharedLibAutocad.csproj|solutionrelative:00-getentityelevation\\cls_00_getentityelev.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\0000-TYPSA.SharedLibForms\\TYPSA.SharedLibForms\\00-UserForms\\InstanciarFormularios.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,8 +17,12 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 7,
+          "SelectedChildIndex": 8,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
@@ -47,15 +54,27 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "cls_00_GetEntityByLayer.cs",
-              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetEntityByLayer.cs",
-              "RelativeDocumentMoniker": "00-GetEntities\\cls_00_GetEntityByLayer.cs",
-              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntities\\cls_00_GetEntityByLayer.cs",
-              "RelativeToolTip": "00-GetEntities\\cls_00_GetEntityByLayer.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAQwAUAAAAtAAAAAAAAAA==",
+              "Title": "cls_00_GetEntityElev.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntityElevation\\cls_00_GetEntityElev.cs",
+              "RelativeDocumentMoniker": "00-GetEntityElevation\\cls_00_GetEntityElev.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibAutocad\\TYPSA.SharedLibAutocad\\00-GetEntityElevation\\cls_00_GetEntityElev.cs",
+              "RelativeToolTip": "00-GetEntityElevation\\cls_00_GetEntityElev.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-12-23T14:14:05.964Z",
+              "WhenOpened": "2026-03-31T13:29:15.703Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "InstanciarFormularios.cs",
+              "DocumentMoniker": "C:\\0000-TYPSA.SharedLibForms\\TYPSA.SharedLibForms\\00-UserForms\\InstanciarFormularios.cs",
+              "RelativeDocumentMoniker": "..\\..\\0000-TYPSA.SharedLibForms\\TYPSA.SharedLibForms\\00-UserForms\\InstanciarFormularios.cs",
+              "ToolTip": "C:\\0000-TYPSA.SharedLibForms\\TYPSA.SharedLibForms\\00-UserForms\\InstanciarFormularios.cs",
+              "RelativeToolTip": "..\\..\\0000-TYPSA.SharedLibForms\\TYPSA.SharedLibForms\\00-UserForms\\InstanciarFormularios.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-03-31T13:28:57.133Z"
             }
           ]
         },
@@ -102,16 +121,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:2:0:{e8034f19-ab72-4f06-83fd-f6832b41aa63}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 162,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
             }
           ]
         }

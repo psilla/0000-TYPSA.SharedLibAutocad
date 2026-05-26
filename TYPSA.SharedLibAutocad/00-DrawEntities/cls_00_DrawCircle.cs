@@ -10,8 +10,8 @@ namespace TYPSA.SharedLib.Autocad.DrawEntities
             Transaction tr,
             BlockTableRecord btr,
             Point3d center,
+            string layerName,
             double radius = 3.0,
-            string layerName = "E-HOMERUN-FAILED",
             short colorIndex = 1
         )
         {

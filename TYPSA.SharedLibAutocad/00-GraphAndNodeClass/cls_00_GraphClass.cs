@@ -1,9 +1,10 @@
-﻿using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.Geometry;
 using TYPSA.SharedLib.Autocad.GetDocument;
+using static TYPSA.SharedLib.Autocad.GetEntities.cls_00_NodeClass;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
 {
@@ -11,6 +12,17 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
     {
         public class Graph
         {
+
+            public void RemoveEntity(Entity ent)
+            {
+                foreach (var node in AdjacencyList.Keys.ToList())
+                {
+                    AdjacencyList[node] = AdjacencyList[node]
+                        .Where(t => t.Item2 != ent)
+                        .ToList();
+                }
+            }
+
             // Vecino + Entidad conectora
             public Dictionary<cls_00_NodeClass.NodePoint, List<Tuple<cls_00_NodeClass.NodePoint, Entity>>> AdjacencyList { get; } =
                 new Dictionary<cls_00_NodeClass.NodePoint, List<Tuple<cls_00_NodeClass.NodePoint, Entity>>>();
@@ -297,6 +309,8 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 cls_00_DocumentInfo.AddEntityToBlockTableRecord(pt, btr, tr);
             }
         }
+
+        
 
 
     }

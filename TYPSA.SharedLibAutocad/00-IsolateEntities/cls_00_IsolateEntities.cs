@@ -26,16 +26,25 @@ namespace TYPSA.SharedLib.Autocad.IsolateEntities
 
         public static void IsolateObjects(
             Editor ed,
-            HashSet<ObjectId> objetosInvalidos
+            HashSet<ObjectId> objetosInvalidos,
+            string customMessage = null
         )
         {
             // No hacer nada si la lista está vacía
-            if (objetosInvalidos.Count == 0) return;
+            if (objetosInvalidos == null || objetosInvalidos.Count == 0) return;
 
-            // Mensaje
+            // Mensaje por defecto
+            string defaultMessage =
+                $"{objetosInvalidos.Count} invalid objects were found. They will be isolated in AutoCAD.";
+
+            // Usar mensaje personalizado si existe
+            string finalMessage = string.IsNullOrWhiteSpace(customMessage)
+                ? defaultMessage
+                : customMessage;
+
+            // Mostrar mensaje
             MessageBox.Show(
-                $"{objetosInvalidos.Count} invalid objects were found. They will be isolated in AutoCAD.",
-                "Isolated Invalid objects"
+                finalMessage, "Isolated Invalid objects"
             );
 
             // Comando Aislar

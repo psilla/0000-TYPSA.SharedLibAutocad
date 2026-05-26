@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using TYPSA.SharedLib.Autocad.Main;
 
 namespace TYPSA.SharedLib.Autocad.SelectEntities
 {
@@ -13,15 +14,16 @@ namespace TYPSA.SharedLib.Autocad.SelectEntities
             string entityTag
         )
         {
-            List<ObjectId> selectedIds = new List<ObjectId>();
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
 
+            List<ObjectId> selectedIds = new List<ObjectId>();
             // Definir el filtro 
             TypedValue[] filterValues = new TypedValue[]
             {
                 new TypedValue((int)DxfCode.Operator, "<OR"),
-                    new TypedValue((int)DxfCode.Start, "INSERT"),
-                    new TypedValue((int)DxfCode.Start, "TEXT"),
-                    new TypedValue((int)DxfCode.Start, "MTEXT"),
+                    new TypedValue((int)DxfCode.Start, entityTypes.BlockReference),
+                    new TypedValue((int)DxfCode.Start, entityTypes.Text),
+                    new TypedValue((int)DxfCode.Start, entityTypes.MText),
                 new TypedValue((int)DxfCode.Operator, "OR>")
             };
             SelectionFilter filter = new SelectionFilter(filterValues);

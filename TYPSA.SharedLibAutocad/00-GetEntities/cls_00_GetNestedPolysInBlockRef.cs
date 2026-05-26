@@ -13,7 +13,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
         )
         {
             List<Polyline> polyList = new List<Polyline>();
-            // Accedemos al bloque del tracker
+            // Accedemos al btr 
             BlockTableRecord btr =
                 tr.GetObject(blockRef.BlockTableRecord, OpenMode.ForRead) as BlockTableRecord;
             // Validamos
@@ -34,6 +34,48 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                     }
                 }
             }
+            // return
+            return polyList;
+        }
+
+        public static List<Polyline> GetNestedPolysInBlockRef(
+            BlockReference blockRef,
+            Transaction tr,
+            List<string> polyLayers
+        )
+        {
+            List<Polyline> polyList = new List<Polyline>();
+            // Validamos
+            if (blockRef == null) return polyList;
+
+            // HashSet layers
+            HashSet<string> validLayers = new HashSet<string>(
+                polyLayers ?? new List<string>(),
+                StringComparer.OrdinalIgnoreCase
+            );
+
+            // Accedemos al btr 
+            BlockTableRecord btr =
+                tr.GetObject(blockRef.BlockTableRecord, OpenMode.ForRead) as BlockTableRecord;
+            // Validamos
+            if (btr == null) return polyList;
+
+            // Iteramos entidades
+            foreach (ObjectId entId in btr)
+            {
+                // Obtener entidad
+                Entity ent = tr.GetObject(entId, OpenMode.ForRead) as Entity;
+                // Validamos poly
+                if (!(ent is Polyline poly)) continue;
+
+                // Validamos layer
+                if (validLayers.Contains(poly.Layer))
+                {
+                    // Almacenamos
+                    polyList.Add(poly);
+                }
+            }
+
             // return
             return polyList;
         }

@@ -1,7 +1,14 @@
-﻿using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
+using TYPSA.SharedLib.Autocad.EntitiesInsertionPoint;
+using TYPSA.SharedLib.Autocad.GetEntities;
+using static TYPSA.SharedLib.Autocad.GetEntities.cls_00_GetGraphFromLayers;
+using static TYPSA.SharedLib.Autocad.GetEntities.cls_00_NodeClass;
+using TYPSA.SharedLib.Autocad.DrawEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetIntersection
 {
@@ -16,7 +23,7 @@ namespace TYPSA.SharedLib.Autocad.GetIntersection
             // Creamos la vertical
             Line vertical = new Line(origin, goal);
 
-            // Definimos el pto de intersección como nulo
+            // Definimos variables por defecto
             Point3d? closestIntersection = null;
             double minDist = double.MaxValue;
             Entity intersectedEntity = null;
@@ -32,9 +39,7 @@ namespace TYPSA.SharedLib.Autocad.GetIntersection
                 // Sumamos
                 totalCandidates++;
 
-                // Creamos una colección vacia de ptos
                 Point3dCollection pts = new Point3dCollection();
-
                 // Vemos qué entidades intersectan con la vertical
                 try
                 {
@@ -45,8 +50,7 @@ namespace TYPSA.SharedLib.Autocad.GetIntersection
                     // continuamos
                     continue;
                 }
-
-                // Verificamos que haya habido alguna intersección
+                // Validamos 
                 if (pts.Count == 0)
                 {
                     // Sumamos
@@ -64,14 +68,14 @@ namespace TYPSA.SharedLib.Autocad.GetIntersection
                 // Recorremos los ptos intersectados
                 foreach (Point3d pt in pts)
                 {
-                    // Obtenemos distancias del pto del disconnect a cada punto de intersección
+                    // Obtenemos distancias del pto del disconnect a cada punto de interseccion
                     double dist = origin.DistanceTo(pt);
 
-                    // La distancia mínima, es decir, la primera intersección, es la elegida
+                    // La primera interseccion es la elegida
                     if (dist < minDist)
                     {
+                        // Asignamos
                         minDist = dist;
-                        // Redefinimos el pto de intersección con el pto encontrado
                         closestIntersection = pt;
                         intersectedEntity = candidate;
                     }
@@ -81,6 +85,93 @@ namespace TYPSA.SharedLib.Autocad.GetIntersection
             // return
             return (closestIntersection, intersectedEntity);
         }
+
+        public static (
+            Point3d? ClosestPoint,
+            Entity IntersectedEntity,
+            bool NoCapacity,
+            string FullMethod
+        ) GetFirstInterFromEnt_AZTEC(
+            Point3d origin,
+            Point3d goal,
+            List<GraphLine> clonedEntities,
+            Dictionary<string, int> maxCircuitsByMethod,
+            Dictionary<string, int> circuitsUsedByEntity
+        )
+        {
+            // Definimos vertical
+            Line vertical = new Line(origin, goal);
+
+            // Definimos variables por defecto
+            Point3d? closestIntersection = null;
+            double minDist = double.MaxValue;
+            Entity intersectedEntity = null;
+            bool noCapacityFound = false;
+            string fullMethod = null;
+
+            // Iteramos
+            foreach (GraphLine candidate in clonedEntities)
+            {
+                // Obtenemos info
+                Line line = candidate.Segment;
+                string method = candidate.InstallationMethod;
+
+                Point3dCollection pts = new Point3dCollection();
+                // Vemos qué entidades intersectan con la vertical
+                try
+                {
+                    line.IntersectWith(vertical, Intersect.OnBothOperands, pts, IntPtr.Zero, IntPtr.Zero);
+                }
+                catch
+                {
+                    // continuamos
+                    continue;
+                }
+                // Validamos
+                if (pts.Count == 0) continue;
+
+                // ahora validamos capacidad
+                if (!string.IsNullOrEmpty(method) && maxCircuitsByMethod.TryGetValue(method, out int maxCircuits))
+                {
+                    // Contamos circuitos usados en la entidad
+                    int used = cls_00_GetGraphFromLayers.GetUsedCircuitsForOrigEntByGraph(
+                        candidate, circuitsUsedByEntity
+                    );
+                    bool hasCapacity = used < maxCircuits;
+
+                    // Validamos
+                    if (!hasCapacity)
+                    {
+                        noCapacityFound = true;
+                        fullMethod = method;
+                        continue;
+                    }
+                }
+
+                // Recorremos los ptos intersectados
+                foreach (Point3d pt in pts)
+                {
+                    // Obtenemos distancias del pto del disconnect a cada punto de interseccion
+                    double dist = origin.DistanceTo(pt);
+                    // La primera interseccion es la elegida
+                    if (dist < minDist)
+                    {
+                        // Asignamos
+                        minDist = dist;
+                        closestIntersection = pt;
+                        intersectedEntity = line;
+                    }
+                }
+            }
+
+            // return
+            return (closestIntersection, intersectedEntity, noCapacityFound, fullMethod);
+        }
+
+
+
+
+
 
 
 

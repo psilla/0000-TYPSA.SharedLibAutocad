@@ -1,8 +1,9 @@
-﻿using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.EditorInput;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Windows.Forms;
+using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.EditorInput;
 using TYPSA.SharedLib.Autocad.GetLayersInfo;
+using TYPSA.SharedLib.Autocad.Main;
 using TYPSA.SharedLib.Autocad.SelectEntities;
 
 namespace TYPSA.SharedLib.Autocad.GetEntities
@@ -55,14 +56,15 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // Asignamos
             selectedLayer = layerName;
 
-            // Filtro OR para MTEXT y TEXT
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
+            // Filtro para ambos textos
             var filterValues = new TypedValue[]
             {
                 new TypedValue((int)DxfCode.LayerName, layerName),
 
                 new TypedValue((int)DxfCode.Operator, "<OR"),
-                    new TypedValue((int)DxfCode.Start, "MTEXT"),
-                    new TypedValue((int)DxfCode.Start, "TEXT"),
+                    new TypedValue((int)DxfCode.Start, entityTypes.MText),
+                    new TypedValue((int)DxfCode.Start, entityTypes.Text),
                 new TypedValue((int)DxfCode.Operator, "OR>")
             };
 
@@ -77,6 +79,41 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 return null;
             }
 
+            return psr;
+        }
+
+        public static PromptSelectionResult GetTextAndMTextByLayer(
+            Editor ed,
+            string entityTag,
+            string layerName
+        )
+        {
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
+            // Filtro para ambos textos
+            var filterValues = new TypedValue[]
+            {
+                new TypedValue((int)DxfCode.LayerName, layerName),
+
+                new TypedValue((int)DxfCode.Operator, "<OR"),
+                    new TypedValue((int)DxfCode.Start, entityTypes.MText),
+                    new TypedValue((int)DxfCode.Start, entityTypes.Text),
+                new TypedValue((int)DxfCode.Operator, "OR>")
+            };
+
+            // Seleccionamos
+            PromptSelectionResult psr = cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
+                ed, filterValues
+            );
+            // Validamos
+            if (psr == null || psr.Status != PromptStatus.OK)
+            {
+                // Mensaje
+                MessageBox.Show($"No {entityTag} found.", "Warning");
+                // Finalizamos
+                return null;
+            }
+
+            // return
             return psr;
         }
 
@@ -110,10 +147,11 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             }
             filterValues.Add(new TypedValue((int)DxfCode.Operator, "OR>"));
 
-            // OR tipos (TEXT + MTEXT)
+            EntityTypes entityTypes = EntityTypes.GetDefaultEntityTypes();
+            // Filtro para ambos textos
             filterValues.Add(new TypedValue((int)DxfCode.Operator, "<OR"));
-            filterValues.Add(new TypedValue((int)DxfCode.Start, "TEXT"));
-            filterValues.Add(new TypedValue((int)DxfCode.Start, "MTEXT"));
+            filterValues.Add(new TypedValue((int)DxfCode.Start, entityTypes.Text));
+            filterValues.Add(new TypedValue((int)DxfCode.Start, entityTypes.MText));
             filterValues.Add(new TypedValue((int)DxfCode.Operator, "OR>"));
 
             // Seleccionamos
@@ -152,6 +190,38 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             // Asignamos
             selectedLayer = layerName;
 
+            // Definir el filtro por nombre de bloque y tipo de entidad
+            var filterValues = new TypedValue[]
+            {
+                new TypedValue((int)DxfCode.LayerName, layerName),
+                new TypedValue((int)DxfCode.Start, entityType),
+            };
+
+            // Seleccionamos
+            PromptSelectionResult psr = cls_00_GetAllSelectionByFilter.GetAllSelectionByFilter(
+                ed, filterValues
+            );
+            // Validamos
+            if (psr == null || psr.Status != PromptStatus.OK)
+            {
+                // Mensaje
+                MessageBox.Show(
+                    $"No {entityTag} found.", "Warning"
+                );
+                // Finalizamos
+                return null;
+            }
+            // return
+            return psr;
+        }
+
+        public static PromptSelectionResult GetEntityByLayer(
+            Editor ed,
+            string layerName,
+            string entityTag,
+            string entityType
+        )
+        {
             // Definir el filtro por nombre de bloque y tipo de entidad
             var filterValues = new TypedValue[]
             {

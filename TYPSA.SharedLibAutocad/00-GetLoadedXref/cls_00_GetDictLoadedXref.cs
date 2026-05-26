@@ -13,7 +13,7 @@ namespace TYPSA.SharedLib.Autocad.GetLoadedXref
             // Definimos diccionario
             Dictionary<string, BlockTableRecord> xrefs = new Dictionary<string, BlockTableRecord>();
 
-            // Recorremos todos los registros de bloques del dibujo
+            // Iteramos
             foreach (ObjectId btrId in bt)
             {
                 // Abrimos cada BlockTableRecord en modo lectura

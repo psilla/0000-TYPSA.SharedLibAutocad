@@ -13,24 +13,24 @@ namespace TYPSA.SharedLib.Autocad.GetLoadedXref
         )
         {
             // Obtenemos el diccionario de Xref
-            Dictionary<string, BlockTableRecord> DictXrefs =
+            Dictionary<string, BlockTableRecord> dictXrefs =
                 cls_00_GetDictLoadedXref.GetDictLoadedXrefs(bt, tr);
             // Validamos
-            if (DictXrefs == null || DictXrefs.Count == 0) return null;
+            if (dictXrefs == null || dictXrefs.Count == 0) return null;
 
             // Obtenemos el listado de nombres para el form
-            List<string> DictXrefsKeys = DictXrefs.Keys.ToList();
+            List<string> dictXrefsKeys = dictXrefs.Keys.ToList();
 
             // Form para elegir el Xref
-            string selectedXref =
-                InstanciarFormularios.CheckListBoxFormUniqueSelectionSearchOut(
-                    "Select the XREF to analyze:", DictXrefsKeys
-                );
+            string selectedXref = cls_00_InstaForm_CheckedListBox.CheckListBoxFormUniqueSelectionSearchOut(
+                "Select the XREF to analyze:", dictXrefsKeys, dictXrefsKeys.First()
+            );
             // Validamos
             if (string.IsNullOrWhiteSpace(selectedXref)) return null;
 
             // Obtenemos la BlockTableRecord desde el dict
-            BlockTableRecord xrefBtr = DictXrefs[selectedXref];
+            BlockTableRecord xrefBtr = dictXrefs[selectedXref];
+
             // return
             return xrefBtr;
         }

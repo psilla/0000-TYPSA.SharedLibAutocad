@@ -1,12 +1,8 @@
-﻿using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.DatabaseServices;
+﻿using Autodesk.AutoCAD.DatabaseServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
-using TYPSA.SharedLib.Autocad.DbObjectsByType;
-using TYPSA.SharedLib.Autocad.GetDocument;
-using TYPSA.SharedLib.UserForms;
 
 namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
 {
@@ -32,9 +28,7 @@ namespace TYPSA.SharedLib.Autocad.ObjectsByTypeByLayer
             if (string.IsNullOrWhiteSpace(fieldValue)) return null;
 
             // Extrae solo letras 
-            string key = new string(fieldValue
-                .Where(char.IsLetter)
-                .ToArray());
+            string key = new string(fieldValue.Where(char.IsLetter).ToArray());
             // return
             return key;
         }

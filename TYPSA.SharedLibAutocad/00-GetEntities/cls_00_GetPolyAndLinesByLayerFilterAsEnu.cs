@@ -7,6 +7,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
 {
     public class cls_00_GetPolyAndLinesByLayerFilterAsEnu
     {
+
         public static IEnumerable<Entity> GetPolyAndLinesByLayerFilterAsEnu(
             Database db,
             Transaction tr,
@@ -27,12 +28,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
             capasUsadas = new HashSet<string>();
 
             // Obtener lineas y poly para los HomeRuns
-            DBObjectCollection allLinesAndPoly =
-                cls_00_GetPolyAndLinesByLayerFilter.GetPolyAndLinesByLayerFilter(
-                    db, tr, btr, layersFilter,
-                    out lineCount, out polylineCount, out arcCount, 
-                    out capasUsadas
-                );
+            DBObjectCollection allLinesAndPoly = cls_00_GetPolyAndLinesByLayerFilter.GetPolyAndLinesByLayerFilter(
+                db, tr, btr, layersFilter,
+                out lineCount, out polylineCount, out arcCount, out capasUsadas
+            );
             // Validamos
             if (allLinesAndPoly.Count == 0)
             {

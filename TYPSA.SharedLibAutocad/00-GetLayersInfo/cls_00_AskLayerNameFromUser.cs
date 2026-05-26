@@ -20,7 +20,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                 .ToList();
 
             // Form
-            string selectedLayer = InstanciarFormularios.CheckListBoxFormUniqueSelectionSearchOut(
+            string selectedLayer = cls_00_InstaForm_CheckedListBox.CheckListBoxFormUniqueSelectionSearchOut(
                 $"Select the layer that contains the {objeto}:",
                 orderedLayers, layerNameByDefault
             );
@@ -53,7 +53,7 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                 .ToList();
 
             // Mostramos formulario con CheckListBox
-            List<string> selectedLayers = InstanciarFormularios.CheckListBoxFormSearchOut(
+            List<string> selectedLayers = cls_00_InstaForm_CheckedListBox.CheckListBoxFormSearchOut(
                 $"Select the layers that contain the {objeto}:",
                 orderedLayers, layerNamesByDefault
             );

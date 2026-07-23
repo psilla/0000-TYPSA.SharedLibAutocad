@@ -11,7 +11,8 @@ namespace TYPSA.SharedLib.Autocad.Buttons
             out string projectCode,
             out List<string> selectedFiles,
             out string selectedFolderPath,
-            out DateTime startTime
+            out DateTime startTime,
+            string customPathLabel = null
         )
         {
             projectCode = null;
@@ -25,7 +26,7 @@ namespace TYPSA.SharedLib.Autocad.Buttons
             if (projectCode == null) return false;
 
             // Ejecutar directamente la opción B: formulario PathEntry
-            using (PathEntry pathEntryForm = new PathEntry(projectCode))
+            using (PathEntry pathEntryForm = new PathEntry(projectCode, customPathLabel))
             {
                 DialogResult pathEntryResult = pathEntryForm.ShowDialog();
                 // Validamos
@@ -40,8 +41,7 @@ namespace TYPSA.SharedLib.Autocad.Buttons
                 {
                     // Mensaje
                     MessageBox.Show(
-                        "No files were selected. Operation cancelled.",
-                        "Cancelled",
+                        "No files were selected. Operation cancelled.", "Cancelled",
                         MessageBoxButtons.OK, MessageBoxIcon.Warning
                     );
                     // Finalizamos

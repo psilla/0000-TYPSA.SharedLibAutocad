@@ -12,6 +12,117 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
     {
         public class Graph
         {
+            public List<NodePoint> GetAllNodesFromEntity(
+                Entity entity
+            )
+            {
+                List<NodePoint> nodes = new List<NodePoint>();
+                Tolerance tol = new Tolerance(0.01, 0.01);
+
+                foreach (var kvp in AdjacencyList)
+                {
+                    NodePoint source = kvp.Key;
+
+                    foreach (var tuple in kvp.Value)
+                    {
+                        NodePoint neighbor = tuple.Item1;
+                        Entity ent = tuple.Item2;
+
+                        if (ent != entity)
+                            continue;
+
+                        if (!nodes.Any(n =>
+                            n.Point.IsEqualTo(source.Point, tol)))
+                        {
+                            nodes.Add(source);
+                        }
+
+                        if (!nodes.Any(n =>
+                            n.Point.IsEqualTo(neighbor.Point, tol)))
+                        {
+                            nodes.Add(neighbor);
+                        }
+                    }
+                }
+
+                return nodes;
+            }
+
+            public List<Entity> GetEntitiesContainingNode(
+                NodePoint node
+            )
+            {
+                List<Entity> entities = new List<Entity>();
+                // Validamos
+                if (node == null) return entities;
+
+                Tolerance tol = new Tolerance(0.01, 0.01);
+                // Iteramos
+                foreach (var kvp in AdjacencyList)
+                {
+                    NodePoint source = kvp.Key;
+                    // Iteramos
+                    foreach (var tuple in kvp.Value)
+                    {
+                        NodePoint neighbor = tuple.Item1;
+                        Entity entity = tuple.Item2;
+
+                        bool sourceMatch = source.Point.IsEqualTo(node.Point, tol);
+                        bool neighborMatch = neighbor.Point.IsEqualTo(node.Point, tol);
+                        // Validamos
+                        if (sourceMatch || neighborMatch)
+                        {
+                            // Validamos
+                            if (!entities.Contains(entity))
+                                entities.Add(entity);
+                        }
+                    }
+                }
+                // return
+                return entities;
+            }
+
+            public class Point3dComparer : IEqualityComparer<Point3d>
+            {
+                public bool Equals(Point3d a, Point3d b)
+                {
+                    return a.IsEqualTo(b, new Tolerance(0.01, 0.01));
+                }
+
+                public int GetHashCode(Point3d p)
+                {
+                    unchecked
+                    {
+                        return
+                            p.X.GetHashCode() ^
+                            p.Y.GetHashCode() ^
+                            p.Z.GetHashCode();
+                    }
+                }
+            }
+
+            public List<cls_00_NodeClass.NodePoint> GetAllNodes()
+            {
+                return AdjacencyList
+                    .SelectMany(kvp =>
+                        new[] { kvp.Key }
+                        .Concat(kvp.Value.Select(t => t.Item1))
+                    )
+                    .Distinct()
+                    .ToList();
+            }
+
+            public List<Point3d> GetAllPoints()
+            {
+                return AdjacencyList
+                    .SelectMany(kvp =>
+                        new[] { kvp.Key }
+                        .Concat(kvp.Value.Select(t => t.Item1))
+                    )
+                    .Select(n => n.Point)
+                    .Distinct(new Point3dComparer())
+                    .ToList();
+            }
 
             public void RemoveEntity(Entity ent)
             {

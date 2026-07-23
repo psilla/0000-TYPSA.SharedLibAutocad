@@ -6,20 +6,18 @@ namespace TYPSA.SharedLib.Autocad.Main
 {
     public class cls_00_MainCheckPaperTextFont
     {
-        private const string ExpectedFont = "ISOCPEUR";
-
         private static PaperTextFontResult CheckFont(
             string fileName,
             string layoutName,
             string textType,
             string textValue,
             string styleName,
-            string fontName
+            string fontName,
+            string expectedFont
         )
         {
-            bool isExpected =
-                fontName != null &&
-                fontName.ToLower().Contains(ExpectedFont.ToLower());
+            bool isExpected = fontName != null &&
+                fontName.ToLower().Contains(expectedFont.ToLower());
 
             // return
             return new PaperTextFontResult
@@ -51,26 +49,21 @@ namespace TYPSA.SharedLib.Autocad.Main
         {
             [JsonIgnore] // ignoramos en JSON
             public string FileName { get; set; }
-
             public string LayoutName { get; set; }
-
             public string TextType { get; set; }
-
             public string TextValue { get; set; }
-
             // Nombre del estilo
             public string StyleName { get; set; }
-
             // Fuente
             public string FontName { get; set; }
-
             public bool IsExpected { get; set; }
         }
 
         public static List<PaperTextFontResult> AnalyzeTextFont(
             Transaction tr,
             Database db,
-            string fileName
+            string fileName,
+            string expectedFont
         )
         {
             List<PaperTextFontResult> results = new List<PaperTextFontResult>();
@@ -105,8 +98,8 @@ namespace TYPSA.SharedLib.Autocad.Main
                         var info = GetFontInfo(tr, dbText.TextStyleId);
                         // Añadimos
                         results.Add(CheckFont(
-                            fileName, layoutName, "DBText", 
-                            dbText.TextString, info.styleName, info.fontName
+                            fileName, layoutName, "DBText", dbText.TextString, 
+                            info.styleName, info.fontName, expectedFont
                         ));
                     }
                     else if (ent is MText mText)
@@ -115,8 +108,8 @@ namespace TYPSA.SharedLib.Autocad.Main
                         var info = GetFontInfo(tr, mText.TextStyleId);
                         // Añadimos
                         results.Add(CheckFont( 
-                            fileName, layoutName, "MText", 
-                            mText.Contents, info.styleName, info.fontName
+                            fileName, layoutName, "MText", mText.Contents, 
+                            info.styleName, info.fontName, expectedFont
                         ));
                     }
                     else if (ent is BlockReference br)
@@ -135,8 +128,8 @@ namespace TYPSA.SharedLib.Autocad.Main
                             var info = GetFontInfo(tr, att.TextStyleId);
                             // Añadimos
                             results.Add(CheckFont(
-                                fileName, layoutName, "Attribute", 
-                                att.TextString, info.styleName, info.fontName
+                                fileName, layoutName, "Attribute", att.TextString, 
+                                info.styleName, info.fontName, expectedFont
                             ));
                         }
                     }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Autodesk.AutoCAD.DatabaseServices;
 using Newtonsoft.Json;
 
@@ -11,7 +13,9 @@ namespace TYPSA.SharedLib.Autocad.Main
             Database db,
             BlockTable bt,
             string fileName,
-            string blockNameFilter 
+            string blockNameFilter ,
+            bool exportAllAttributes = true,
+            List<string> allowedTags = null
         )
         {
             List<BlockAttributesResult> results = new List<BlockAttributesResult>();
@@ -46,14 +50,20 @@ namespace TYPSA.SharedLib.Autocad.Main
                 {
                     try
                     {
-                        // Obtenemos entidad
+                        // -----------------------------
+                        // Obtener entidad
+                        // -----------------------------
+                       
                         Entity ent = tr.GetObject(entId, OpenMode.ForRead) as Entity;
                         if (ent == null) continue;
 
                         // Validamos BlockRef
                         if (ent is BlockReference br)
                         {
-                            // Obtenemos
+                            // -----------------------------
+                            // Obtener nombre bloque
+                            // -----------------------------
+                         
                             BlockTableRecord brBtr =
                                 (BlockTableRecord)tr.GetObject(br.BlockTableRecord, OpenMode.ForRead);
 
@@ -62,7 +72,10 @@ namespace TYPSA.SharedLib.Autocad.Main
                             if (string.IsNullOrWhiteSpace(blockName) ||
                                 !blockName.Contains(blockNameFilter)) continue;
 
+                            // -----------------------------
                             // Recorremos atributos
+                            // -----------------------------
+                        
                             foreach (ObjectId attId in br.AttributeCollection)
                             {
                                 // Obtenemos
@@ -70,6 +83,21 @@ namespace TYPSA.SharedLib.Autocad.Main
                                     tr.GetObject(attId, OpenMode.ForRead) as AttributeReference;
                                 // Validamos
                                 if (att == null) continue;
+
+                                // -----------------------------
+                                // Filtrado opcional por tags
+                                // -----------------------------
+
+                                if (!exportAllAttributes)
+                                {
+                                    if (allowedTags == null || !allowedTags.Any(x =>
+                                        x.Equals(att.Tag, StringComparison.OrdinalIgnoreCase)
+                                    ))
+                                    {
+                                        // Obviamos
+                                        continue;
+                                    }
+                                }
 
                                 // Almacenamos
                                 results.Add(new BlockAttributesResult
@@ -91,6 +119,7 @@ namespace TYPSA.SharedLib.Autocad.Main
                 }
             }
 
+            // return
             return results;
         }
 
@@ -115,10 +144,14 @@ namespace TYPSA.SharedLib.Autocad.Main
             Database db,
             BlockTable bt,
             string fileName,
-            string blockNameFilter
+            string blockNameFilter,
+            bool exportAllAttributes = true,
+            List<string> allowedTags = null
         )
         {
-            return CheckBlockAttributesInLayouts(tr, db, bt, fileName, blockNameFilter);
+            return CheckBlockAttributesInLayouts(
+                tr, db, bt, fileName, blockNameFilter, exportAllAttributes, allowedTags
+            );
         }
     }
 }

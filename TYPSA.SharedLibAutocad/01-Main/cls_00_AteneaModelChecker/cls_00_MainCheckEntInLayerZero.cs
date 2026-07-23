@@ -66,13 +66,10 @@ namespace TYPSA.SharedLib.Autocad.Main
             public string FileName { get; set; }
             // Total
             public bool IsUsed { get; set; }
-
             // Total entidades en capa 0
             public int EntityCount { get; set; }
-
             // Modelo
             public int ModelSpaceCount { get; set; }
-
             // Papel
             public int PaperSpaceCount { get; set; }
         }

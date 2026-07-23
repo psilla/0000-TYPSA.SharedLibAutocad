@@ -60,16 +60,18 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
         public Line Entity { get; set; }
         public Point3d Start { get; set; }
         public Point3d End { get; set; }
-        public double Length { get; set; }
-        public int Circuits { get; set; }
-        public double Energy { get; set; }
         public string EnergyStr { get; set; }
-        public string Method { get; set; }
         public string Layer { get; set; }
+        public List<string> DcBlockLabels { get; set; } = new List<string>();
+
+        // Info en Pset
+        public double Energy { get; set; }
+        public int Circuits { get; set; }
+        public double Length { get; set; }
         public bool Compliance { get; set; }
+        public string Method { get; set; }
         public string Type { get; set; }
         public int MaxCircuitsAllowed { get; set; }
-        public List<string> DcBlockLabels { get; set; } = new List<string>();
     }
 
     public class GraphLine
@@ -78,6 +80,8 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
         public string OriginalLayer { get; set; }
         public ObjectId OriginalEntityId { get; set; }
         public string InstallationMethod { get; set; }
+        public Point3d Start { get; set; }
+        public Point3d End { get; set; }
     }
 
     public class cls_00_GetGraphFromLayers
@@ -110,8 +114,7 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
                 )
                 .ToList();
             // Validamos
-            if (allPoints == null || allPoints.Count == 0)
-                return new List<GraphSegment>();
+            if (allPoints == null || allPoints.Count == 0) return new List<GraphSegment>();
 
             // -----------------------------
             // Filtrar nodos entre start y end

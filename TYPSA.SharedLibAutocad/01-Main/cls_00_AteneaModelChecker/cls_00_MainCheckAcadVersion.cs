@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Autodesk.AutoCAD.DatabaseServices;
 using Newtonsoft.Json;
 
@@ -61,6 +63,89 @@ namespace TYPSA.SharedLib.Autocad.Main
             return $"Unknown ({major}.{minor})";
         }
 
+        private static void ShowAllDwgVersions()
+        {
+            List<string> values = Enum.GetValues(typeof(DwgVersion))
+                .Cast<DwgVersion>().Select(v => $"{v} = {(int)v}").ToList();
+            
+            string result = string.Join(
+                Environment.NewLine, values
+            );
+            // Mostramos
+            Autodesk.AutoCAD.ApplicationServices.Application.ShowAlertDialog(result);
+        }
+
+        private static string GetDwgSavedVersion(
+            DwgVersion dwgVersion
+        )
+        {
+            switch (dwgVersion)
+            {
+                case DwgVersion.AC1015:
+                    return "AutoCAD 2000 / 2000i / 2002";
+
+                case DwgVersion.AC1800:
+                case DwgVersion.AC1800a:
+                    return "AutoCAD 2004 / 2005 / 2006";
+
+                case DwgVersion.AC1021:
+                case DwgVersion.AC2100a:
+                    return "AutoCAD 2007 / 2008 / 2009";
+
+                case DwgVersion.AC1024:
+                case DwgVersion.AC2400a:
+                    return "AutoCAD 2010 / 2011 / 2012";
+
+                case DwgVersion.AC1027:
+                case DwgVersion.AC2700a:
+                    return "AutoCAD 2013 / 2014 / 2015 / 2016 / 2017";
+
+                case DwgVersion.AC1032:
+                case DwgVersion.AC3200a:
+                    return "AutoCAD 2018 / 2019 / 2020 / 2021 / 2022 / 2023 / 2024 / 2025 / 2026";
+
+                case DwgVersion.Unknown:
+                    return "Unknown";
+
+                default:
+                    return dwgVersion.ToString();
+            }
+        }
+
+        private static string GetDwgSaveAsVersion(
+            DwgVersion dwgVersion
+        )
+        {
+            switch (dwgVersion)
+            {
+                case DwgVersion.AC1032:
+                case DwgVersion.AC3200a:
+                    return "AutoCAD 2018 (*.dwg)";
+
+                case DwgVersion.AC1027:
+                case DwgVersion.AC2700a:
+                    return "AutoCAD 2013 (*.dwg)";
+
+                case DwgVersion.AC1024:
+                case DwgVersion.AC2400a:
+                    return "AutoCAD 2010 (*.dwg)";
+
+                case DwgVersion.AC1021:
+                case DwgVersion.AC2100a:
+                    return "AutoCAD 2007 (*.dwg)";
+
+                case DwgVersion.AC1800:
+                case DwgVersion.AC1800a:
+                    return "AutoCAD 2004 (*.dwg)";
+
+                case DwgVersion.AC1015:
+                    return "AutoCAD 2000 (*.dwg)";
+
+                default:
+                    return dwgVersion.ToString();
+            }
+        }
+
         public class AcadVersionResult
         {
             [JsonIgnore] // ignoramos en JSON
@@ -86,7 +171,8 @@ namespace TYPSA.SharedLib.Autocad.Main
         )
         {
             // Obtenemos version
-            string version = GetAcadVersion();
+            //string version = GetAcadVersion();
+            string version = GetDwgSaveAsVersion(db.OriginalFileVersion);
             // return
             return CheckVersion(version, fileName);
         }

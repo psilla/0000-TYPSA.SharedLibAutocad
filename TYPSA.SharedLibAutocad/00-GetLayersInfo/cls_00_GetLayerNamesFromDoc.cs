@@ -14,8 +14,12 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
             public bool IsFrozen { get; set; }
             public bool IsLocked { get; set; }
             public bool IsPlottable { get; set; }
+            public string Color { get; set; }
+            public string Linetype { get; set; }
+            public string LineWeight { get; set; }
+            public string Transparency { get; set; }
         }
-
+        
         public static List<string> GetLayerNamesFromDoc(
             Database db
         )
@@ -64,8 +68,17 @@ namespace TYPSA.SharedLib.Autocad.GetLayersInfo
                     IsOn = !ltr.IsOff,
                     IsFrozen = ltr.IsFrozen,
                     IsLocked = ltr.IsLocked,
-                    IsPlottable = ltr.IsPlottable
-                });
+                    IsPlottable = ltr.IsPlottable,
+                    Color = ltr.Color.ColorNameForDisplay,
+                    Linetype = ltr.LinetypeObjectId.IsNull
+                        ? "Continuous"
+                        : ((LinetypeTableRecord)tr.GetObject(
+                            ltr.LinetypeObjectId, OpenMode.ForRead)).Name,
+                    LineWeight = ltr.LineWeight.ToString(),
+                    Transparency = ltr.Transparency.IsByLayer
+                        ? "ByLayer"
+                        : ltr.Transparency.Alpha.ToString()
+                    });
             }
 
             return layers

@@ -35,6 +35,78 @@
   <PropertyGroup>
     <StartupObject />
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'C2026|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\C2026\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2026|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2026\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2025|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2025\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2024|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2024\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2023|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2023\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2022|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2022\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2021|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2021\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == '2020|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\2020\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="accoremgd">
       <HintPath>..\..\Program Files\Autodesk\AutoCAD 2023\accoremgd.dll</HintPath>
@@ -229,6 +301,10 @@
     <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRight.cs" />
     <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRightTol.cs" />
     <Compile Include="00-ZoomToEntity\cls_00_ZoomToEntity.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlockRefsInLayouts.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckEntityTypes.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlocksInUse.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckFileSize.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckByLayerProp.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainGetPlogTag.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlockAttr.cs" />
@@ -239,7 +315,7 @@
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckPaperTextFont.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckProjUnits.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckXrefs.cs" />
-    <Compile Include="01-Main\cls_00_CivilInfoHelper.cs" />
+    <Compile Include="01-Main\cls_00_CadInfoHelper.cs" />
     <Compile Include="01-Main\cls_00_ProcessResult.cs" />
     <Compile Include="02-Buttons\cls_00_GetUserData.cs" />
     <Compile Include="Program.cs" />
@@ -250,6 +326,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\0000-TYPSA.SharedLibEndPoints\TYPSA.SharedLibEndPoints\TYPSA.SharedLibEndPoints.csproj">
+      <Project>{db670f85-371e-4bce-9253-f2bdd6a66dea}</Project>
+      <Name>TYPSA.SharedLibEndPoints</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\0000-TYPSA.SharedLibForms\TYPSA.SharedLibForms\TYPSA.SharedLibForms.csproj">
       <Project>{8f836313-b339-4db6-8a55-af61386871b4}</Project>
       <Name>TYPSA.SharedLibForms</Name>

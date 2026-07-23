@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Windows.Forms;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
@@ -77,12 +78,12 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
 
         private static Dictionary<string, List<DBObject>> dicc_DbObjects_ByType(
             Document doc,
-            bool includeNestedBlockRefs = true 
+            bool includeNestedBlockRefs = true ,
+            bool showSummary = false
         )
         {
             // Diccionario para agrupar las entidades por su tipo
-            Dictionary<string, List<DBObject>> entitiesByType =
-                new Dictionary<string, List<DBObject>>();
+            Dictionary<string, List<DBObject>> entitiesByType = new Dictionary<string, List<DBObject>>();
             // Bloquear documento
             using (var dl = doc.LockDocument())
             {
@@ -153,17 +154,26 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
                 }
             }
 
-            // Construir el mensaje para mostrar
-            string message =
-                $"Entities by Type found in '" +
-                $"{cls_00_DocumentInfo.GetActiveDocumentName(doc)}':\n\n";
-            // Iteramos
-            foreach (var kvp in entitiesByType)
+            // -----------------------------
+            // Mostrar resumen
+            // -----------------------------
+
+            if (showSummary)
             {
-                message += $"{kvp.Key}: {kvp.Value.Count} entities\n";
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine(
+                    $"Entities by Type found in '{cls_00_DocumentInfo.GetActiveDocumentName(doc)}':"
+                );
+                sb.AppendLine();
+
+                foreach (var kvp in entitiesByType)
+                {
+                    sb.AppendLine($"{kvp.Key}: {kvp.Value.Count} entities");
+                }
+
+                new AutoCloseMessageForm(sb.ToString()).ShowDialog();
             }
-            // Mostrar el mensaje
-            new AutoCloseMessageForm(message).ShowDialog();
 
             // return
             return entitiesByType;
@@ -318,7 +328,10 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
             // Obtenemos el nombre del documento sin extensión
             string docName = cls_00_DocumentInfo.GetActiveDocumentName(doc);
 
-            // Obtenemos el diccionario de Entidades
+            // -----------------------------
+            // Obtener Entidades
+            // -----------------------------
+
             Dictionary<string, List<DBObject>> diccEntities = dicc_DbObjects_ByType(doc, false);
             // Validamos
             if (diccEntities == null || diccEntities.Count == 0)
@@ -332,9 +345,9 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
                 return null;
             }
 
-            // =========================
-            // SELECCION ENTIDADES
-            // =========================
+            // -----------------------------
+            // Seleccionar Entidades
+            // -----------------------------
 
             HashSet<string> availableTypes = new HashSet<string>(diccEntities.Keys);
             // Seleccionamos Tipos de Entidad
@@ -344,9 +357,9 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
             // Validamos
             if (selectedTypes == null) return null;
 
-            // =========================
-            // FILTRAMOS ENTIDADES
-            // =========================
+            // -----------------------------
+            // Filtrar Entidades
+            // -----------------------------
 
             // Filtrar diccionario por tipo
             Dictionary<string, List<DBObject>> diccEntitiesFiltered = diccEntities
@@ -367,11 +380,10 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
                 return null;
             }
 
-            // =========================
-            // OBTENER CAPAS
-            // =========================
+            // -----------------------------
+            // Obtener Layers
+            // -----------------------------
 
-            // Obtener capas únicas de esos objetos
             HashSet<string> allLayers = new HashSet<string>();
             // Iteramos
             foreach (var obj in filteredObjects.OfType<Entity>())
@@ -381,9 +393,9 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
             // Validamos
             if (allLayers.Count == 0) return null;
 
-            // =========================
-            // SELECCION CAPAS
-            // =========================
+            // -----------------------------
+            // Seleccionar Layers
+            // -----------------------------
 
             List<string> selectedLayers = ResolveSelectionCheckList(
                 docName, allLayers, "Layers", layerSelectionMode, defaultLayers
@@ -391,9 +403,9 @@ namespace TYPSA.SharedLib.Autocad.DbObjectsByType
             // Validamos
             if (selectedLayers == null) return null;
 
-            // =========================
-            // FILTRAR POR CAPA
-            // =========================
+            // -----------------------------
+            // Filtrar Layers
+            // -----------------------------
 
             // Filtrar objetos por capas seleccionadas
             List<DBObject> objetos = filteredObjects

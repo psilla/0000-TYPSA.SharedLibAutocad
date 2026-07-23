@@ -59,9 +59,7 @@ namespace TYPSA.SharedLib.Autocad.Main
             List<LayerInfo> allLayers = GetLayerInfoFromDoc(tr, db);
 
             // Resultados
-            List<LayerUsageResult> results =
-                new List<LayerUsageResult>();
-
+            List<LayerUsageResult> results = new List<LayerUsageResult>();
             // Iteramos capas
             foreach (LayerInfo layer in allLayers)
             {
@@ -82,24 +80,19 @@ namespace TYPSA.SharedLib.Autocad.Main
                 results.Add(new LayerUsageResult
                 {
                     FileName = fileName,
-
                     LayerName = layer.Name,
-
                     IsUsed = totalEntities > 0,
-
                     EntityCount = totalEntities,
-
                     ModelSpaceCount = modelEntities,
-
                     PaperSpaceCount = paperEntities,
-
                     IsOn = layer.IsOn,
-
                     IsFrozen = layer.IsFrozen,
-
                     IsLocked = layer.IsLocked,
-
-                    IsPlottable = layer.IsPlottable
+                    IsPlottable = layer.IsPlottable,
+                    Color = layer.Color,
+                    Linetype = layer.Linetype,
+                    LineWeight = layer.LineWeight,
+                    Transparency = layer.Transparency,
                 });
             }
 
@@ -111,27 +104,22 @@ namespace TYPSA.SharedLib.Autocad.Main
         {
             [JsonIgnore]
             public string FileName { get; set; }
-
             public string LayerName { get; set; }
-
             public bool IsUsed { get; set; }
-
             // Total entidades
             public int EntityCount { get; set; }
-
             // Entidades en modelo
             public int ModelSpaceCount { get; set; }
-
             // Entidades en papel
             public int PaperSpaceCount { get; set; }
-
             public bool IsOn { get; set; }
-
             public bool IsFrozen { get; set; }
-
             public bool IsLocked { get; set; }
-
             public bool IsPlottable { get; set; }
+            public string Color { get; set; }
+            public string Linetype { get; set; }
+            public string LineWeight { get; set; }
+            public string Transparency { get; set; }
         }
 
         public static List<LayerUsageResult> AnalyzeLayers(

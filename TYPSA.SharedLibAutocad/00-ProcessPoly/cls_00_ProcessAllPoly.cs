@@ -68,8 +68,7 @@ namespace TYPSA.SharedLib.Autocad.ProcessPoly
             if (nullPolyCount > 0)
             {
                 ShowStringBuilder.ShowInfo(
-                    $"⚠ {entityTag} Issues Found:",
-                    infoPoly.ToString()
+                    $"⚠ {entityTag} Issues Found:", infoPoly.ToString()
                 );
             }
 

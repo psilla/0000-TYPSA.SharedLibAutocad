@@ -185,6 +185,59 @@ namespace TYPSA.SharedLib.Autocad.Main
             return CheckByLayerUsage(tr, db, bt, fileName, isSpanish);
         }
 
+        public static void SetByLayerProperties(
+            Transaction tr,
+            Database db,
+            BlockTable bt
+        )
+        {
+            foreach (ObjectId btrId in bt)
+            {
+                BlockTableRecord btr =
+                    (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead);
+
+                if (!btr.IsLayout) continue;
+
+                foreach (ObjectId entId in btr)
+                {
+                    Entity ent = tr.GetObject(entId, OpenMode.ForWrite) as Entity;
+                    if (ent == null) continue;
+
+                    if (ent.IsAProxy) continue;
+
+                    // -----------------------------
+                    // Color → ByLayer
+                    // -----------------------------
+
+                    if (!ent.Color.IsByLayer)
+                    {
+                        ent.Color = Autodesk.AutoCAD.Colors.Color.FromColorIndex(
+                            Autodesk.AutoCAD.Colors.ColorMethod.ByLayer,
+                            256
+                        );
+                    }
+
+                    // -----------------------------
+                    // Linetype → ByLayer
+                    // -----------------------------
+
+                    if (ent.LinetypeId != db.ByLayerLinetype)
+                    {
+                        ent.LinetypeId = db.ByLayerLinetype;
+                    }
+
+                    // -----------------------------
+                    // Lineweight → ByLayer
+                    // -----------------------------
+
+                    if (ent.LineWeight != LineWeight.ByLayer)
+                    {
+                        ent.LineWeight = LineWeight.ByLayer;
+                    }
+                }
+            }
+        }
+
 
     }
 }

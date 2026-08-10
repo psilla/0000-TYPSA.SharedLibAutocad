@@ -80,8 +80,10 @@ namespace TYPSA.SharedLib.Autocad.GetEntities
         public string OriginalLayer { get; set; }
         public ObjectId OriginalEntityId { get; set; }
         public string InstallationMethod { get; set; }
+        public string InstallationMethodType { get; set; }
         public Point3d Start { get; set; }
         public Point3d End { get; set; }
+        public int MaxNumCircuitsByType { get; set; }
     }
 
     public class cls_00_GetGraphFromLayers

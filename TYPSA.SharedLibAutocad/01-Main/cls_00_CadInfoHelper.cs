@@ -7,11 +7,11 @@ using System.Text;
 using System.Windows.Forms;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckAcadVersion;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckBlockAttr;
-using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckBlockRefsInLayouts;
+using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckBlockRefsInLayoutsCount;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckBlocksInUse;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckByLayerProp;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckEntInLayerZero;
-using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckEntityTypes;
+using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckEntityTypesCount;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckFileSize;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckLayersInUse;
 using static TYPSA.SharedLib.Autocad.Main.cls_00_MainCheckPaperTextFont;
@@ -26,9 +26,9 @@ namespace TYPSA.SharedLib.Autocad.Main
 {
     public class CadSessionInfo
     {
-        // =========================
-        // Revit Info (inputs reales)
-        // =========================
+        // -------------------------------
+        // Info (inputs reales)
+        // -------------------------------
 
         public string CivilVersion { get; set; }
         public string UserName { get; set; }
@@ -37,33 +37,60 @@ namespace TYPSA.SharedLib.Autocad.Main
         public string AteneaVersion { get; set; }
         public string SerapisMetrics { get; set; }
 
-        // =========================
+        // -------------------------------
         // Root Folder
-        // =========================
+        // -------------------------------
 
         public string RootFolderName => "AteneaCivilWeb";
 
-        // =========================
+        // -------------------------------
         // Safe Values
-        // =========================
+        // -------------------------------
 
         public string SafeVersion => MakeSafe(CivilVersion);
         public string SafeUser => MakeSafe(UserName);
         public string SafeLanguage => MakeSafe(CivilLanguage);
 
-        // =========================
+        // -------------------------------
         // Json File Names
-        // =========================
+        // -------------------------------
 
-        public string JsonFileNameDataExtraction => $"ParamElemExp_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
-        public string JsonFileNameParamCheckSet => $"ParamCheckSet_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
-        public string JsonFileNameParamCheckExp => $"ParamCheckExp_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
-        public string JsonFileNameParamCheckExpInv => $"ParamCheckExpInv_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
-        public string JsonFileNameParamDataExp => $"ParamDataExp_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+        private static string SanitizeFileName(string fileName)
+        {
+            string name = Path.GetFileNameWithoutExtension(fileName);
 
-        // =========================
+            foreach (char c in Path.GetInvalidFileNameChars())
+            {
+                name = name.Replace(c, '_');
+            }
+
+            return name;
+        }
+
+        private string TimeStamp => DateTime.Now.ToString("yyyyMMdd_HHmmss");
+
+        public string JsonFileNameDataExtraction =>
+            $"{TimeStamp}_ParamElemExp_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+
+        public string JsonFileNameParamCheckSet =>
+            $"{TimeStamp}_ParamCheckSet_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+
+        public string JsonFileNameParamCheckExp =>
+            $"{TimeStamp}_ParamCheckExp_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+
+        public string JsonFileNameParamCheckExpInv =>
+            $"{TimeStamp}_ParamCheckExpInv_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+        public string JsonFileNameParamDataExp =>
+            $"{TimeStamp}_ParamDataExp_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+        public string GetJsonFileNameParamDataExp(string fileName) =>
+            $"{TimeStamp}_ParamDataExp_{SanitizeFileName(fileName)}_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+
+        public string GetJsonFileNameParamCheckExp(string fileName) =>
+            $"{TimeStamp}_ParamCheckExp_{SanitizeFileName(fileName)}_{SafeUser}_{SafeVersion}_{SafeLanguage}.json";
+
+        // -------------------------------
         // Helper
-        // =========================
+        // -------------------------------
 
         private string MakeSafe(string input)
         {
@@ -135,8 +162,10 @@ namespace TYPSA.SharedLib.Autocad.Main
         public string PurgeableStyles { get; }
         public string FileSize { get; }
         public string BlocksInUse { get; }
-        public string BlockRefsInLayouts { get; }
-        public string EntityTypes { get; }
+        //public string BlockRefsInLayouts { get; }
+        public string BlockRefsInLayoutsCount { get; }
+        //public string EntityTypes { get; }
+        public string EntityTypesCount { get; }
         public string CivilStyles { get; }
         public string CivilObjects { get; }
         public string EntByLayer { get; }
@@ -160,8 +189,10 @@ namespace TYPSA.SharedLib.Autocad.Main
             PurgeableStyles = GetPurgeableStyles(isSpanish);
             FileSize = GetFileSize(isSpanish);
             BlocksInUse = GetBlocksInUse(isSpanish);
-            BlockRefsInLayouts = GetBlockRefsInLayouts(isSpanish);
-            EntityTypes = GetEntityTypes(isSpanish);
+            //BlockRefsInLayouts = GetBlockRefsInLayouts(isSpanish);
+            BlockRefsInLayoutsCount = GetBlockRefsInLayoutsCount(isSpanish);
+            //EntityTypes = GetEntityTypes(isSpanish);
+            EntityTypesCount = GetEntityTypesCount(isSpanish);
             CivilStyles = GetCivilStyles(isSpanish);
             CivilObjects = GetCivilObjects(isSpanish);
             EntByLayer = GetByLayerProperties(isSpanish);
@@ -333,7 +364,15 @@ namespace TYPSA.SharedLib.Autocad.Main
                 includeDescription
             );
 
-        public static string GetEntityTypes(bool es, bool includeDescription = true) =>
+        //public static string GetEntityTypes(bool es, bool includeDescription = true) =>
+        //    GetText(
+        //        es,
+        //        "Tipos de elementos", "Identifica los tipos de elementos presentes en el modelo, indicando categoría, capa y handle",
+        //        "Entity Types", "Identifies element types present in the model, including category, layer and handle",
+        //        includeDescription
+        //    );
+
+        public static string GetEntityTypesCount(bool es, bool includeDescription = true) =>
             GetText(
                 es,
                 "Tipos de elementos", "Identifica los tipos de elementos presentes en el modelo, indicando categoría, capa y handle",
@@ -421,7 +460,15 @@ namespace TYPSA.SharedLib.Autocad.Main
                 includeDescription
             );
 
-        public static string GetBlockRefsInLayouts(bool es, bool includeDescription = true) =>
+        //public static string GetBlockRefsInLayouts(bool es, bool includeDescription = true) =>
+        //    GetText(
+        //        es,
+        //        "Bloques en layout", "Obtiene las referencias de bloque insertadas en layouts",
+        //        "Block References in Layout", "Retrieves block references inserted in layouts",
+        //        includeDescription
+        //    );
+
+        public static string GetBlockRefsInLayoutsCount(bool es, bool includeDescription = true) =>
             GetText(
                 es,
                 "Bloques en layout", "Obtiene las referencias de bloque insertadas en layouts",
@@ -474,9 +521,11 @@ namespace TYPSA.SharedLib.Autocad.Main
                 GetCoordSystem(isSpanish, true),
                 GetFileSize(isSpanish, true),
                 GetPurgeableStyles(isSpanish, true),
-                GetBlockRefsInLayouts(isSpanish, true),
+                //GetBlockRefsInLayouts(isSpanish, true),
+                GetBlockRefsInLayoutsCount(isSpanish, true),
                 GetBlocksInUse(isSpanish, true),
-                GetEntityTypes(isSpanish, true),
+                //GetEntityTypes(isSpanish, true),
+                GetEntityTypesCount(isSpanish, true),
                 GetCivilStyles(isSpanish, true),
                 GetCivilObjects(isSpanish, true)
             };
@@ -505,8 +554,10 @@ namespace TYPSA.SharedLib.Autocad.Main
         public List<PlotInfoResult> PlotTags { get; set; } = new List<PlotInfoResult>();
         public List<FileSizeResult> FileSize { get; set; } = new List<FileSizeResult>();
         public List<BlockUsageResult> BlocksInUse { get; set; } = new List<BlockUsageResult>();
-        public List<EntityTypeResult> EntityTypes { get; set; } = new List<EntityTypeResult>();
-        public List<BlockRefLayoutResult> BlockRefsInLayouts { get; set; } = new List<BlockRefLayoutResult>();
+        //public List<EntityTypeResult> EntityTypes { get; set; } = new List<EntityTypeResult>();
+        public List<EntityTypeResult> EntityTypesCount { get; set; } = new List<EntityTypeResult>();
+        //public List<BlockRefLayoutResult> BlockRefsInLayouts { get; set; } = new List<BlockRefLayoutResult>();
+        public List<BlockRefsByLayoutResult> BlockRefsInLayoutsCount { get; set; } = new List<BlockRefsByLayoutResult>();
     }
 
     

@@ -85,3 +85,6 @@ C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Release\TYPSA.SharedLi
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\Release\TYPSA.SharedLibAutocad.pdb
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\00-UserForms\SelectFilesDialog.resx
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\00-UserForms\SelectFilesDialog.cs
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\TYPSA.SharedLibEndPoints.dll
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\TYPSA.SharedLibEndPoints.pdb
+C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\Release\TYPSA.SharedLibEndPoints.dll.config

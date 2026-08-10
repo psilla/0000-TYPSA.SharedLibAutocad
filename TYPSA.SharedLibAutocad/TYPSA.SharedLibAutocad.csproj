@@ -301,6 +301,8 @@
     <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRight.cs" />
     <Compile Include="00-SortObjects\cls_00_SortObjectsTopToBottomLeftToRightTol.cs" />
     <Compile Include="00-ZoomToEntity\cls_00_ZoomToEntity.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckEntityTypesCount.cs" />
+    <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlockRefsInLayoutsCount.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlockRefsInLayouts.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckEntityTypes.cs" />
     <Compile Include="01-Main\cls_00_AteneaModelChecker\cls_00_MainCheckBlocksInUse.cs" />

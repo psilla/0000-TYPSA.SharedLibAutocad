@@ -88,6 +88,3 @@ C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\obj\2023\TYPSA.SharedLibAu
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\2023\TYPSA.SharedLibEndPoints.dll
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\2023\TYPSA.SharedLibEndPoints.pdb
 C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\2023\TYPSA.SharedLibEndPoints.dll.config
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\2023\TYPSA.SharedLibJson.dll
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\2023\TYPSA.SharedLibJson.pdb
-C:\0000-TYPSA.SharedLibAutocad\TYPSA.SharedLibAutocad\bin\2023\TYPSA.SharedLibJson.dll.config

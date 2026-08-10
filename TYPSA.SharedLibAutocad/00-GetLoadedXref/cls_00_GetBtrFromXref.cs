@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using Autodesk.AutoCAD.DatabaseServices;
 using TYPSA.SharedLib.UserForms;
@@ -33,6 +34,51 @@ namespace TYPSA.SharedLib.Autocad.GetLoadedXref
 
             // return
             return xrefBtr;
+        }
+
+        public static bool TryGetXrefInfo(
+            BlockTable bt,
+            Transaction tr,
+            out BlockTableRecord xrefBtr,
+            out string xrefFilePath
+        )
+        {
+            // Inicializamos
+            xrefBtr = null;
+            xrefFilePath = null;
+
+            // -----------------------------
+            // Obtener BlockTableRecord
+            // -----------------------------
+
+            xrefBtr = cls_00_GetBtrFromXref.GetBtrFromXref(bt, tr);
+            // Validamos
+            if (xrefBtr == null) return false;
+           
+            // -----------------------------
+            // Obtener ruta del Xref
+            // -----------------------------
+
+            xrefFilePath = xrefBtr.PathName;
+
+            // Convertir a ruta absoluta si es relativa
+            if (!Path.IsPathRooted(xrefFilePath))
+            {
+                string currentDrawingDir = Path.GetDirectoryName(
+                    HostApplicationServices.Current.FindFile(
+                        Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager
+                            .MdiActiveDocument.Name,
+                        Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager
+                            .MdiActiveDocument.Database,
+                        FindFileHint.Default
+                    )
+                );
+                // Obtenemos ruta completa del archivo Xref
+                xrefFilePath = Path.Combine(currentDrawingDir, xrefFilePath);
+            }
+
+            // return
+            return true;
         }
 
 
